@@ -174,3 +174,13 @@
     background-color: rgba(77, 5, 5, 0.9);
     padding: 15px;
 }
+
+#footer_marca a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+#footer_marca a:hover {
+    color: #ccc;
+}

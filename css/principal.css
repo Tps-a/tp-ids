@@ -184,3 +184,24 @@
 #footer_marca a:hover {
     color: #ccc;
 }
+
+/*boton diseñar auto*/
+.btn-diseña {
+    display: block;
+    width: 300px;
+    height: 60px;
+    background-color: #db0e0e;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 30px;
+    margin: 40px auto 0;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-diseña:hover {
+    background-color: #b00c0c;
+}

@@ -36,3 +36,68 @@ body {
     height: auto;
     animation: carAnimation 10s linear infinite;
   }
+
+  @keyframes carAnimation {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  
+  .arrow-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .arrow-btn {
+    font-size: 40px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .left-arrow {
+    margin-left: 20px;
+  }
+  
+  .right-arrow {
+    margin-right: 20px;
+  }
+  
+  #color-options {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .color-option {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  
+  #color-red {
+    background-color: red;
+  }
+  
+  #color-blue {
+    background-color: blue;
+  }
+  
+  #color-green {
+    background-color: green;
+  }
+
+  
+  

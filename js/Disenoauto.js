@@ -23,8 +23,3 @@ colorOptions.forEach((option, index) => {
   });
 }); 
 
-
-
-
-  
-  

@@ -26,6 +26,12 @@ body {
     height: 400px;
     overflow: hidden;
   }
+
+#car-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
   
   .car-image {
     position: absolute;
@@ -98,6 +104,3 @@ body {
   #color-green {
     background-color: green;
   }
-
-  
-  

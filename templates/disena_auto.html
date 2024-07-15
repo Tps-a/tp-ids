@@ -36,13 +36,27 @@
             </div>
           </section>
 
-        <section>
-            <h2>Selecciona el color de tu auto</h2>
-            <div id="color-options">
-                <button id="color-red" class="color-option"></button>
-                <button id="color-blue" class="color-option"></button>
-                <button id="color-green" class="color-option"></button>
-            </div>
+          <section id="autos-table">
+            <h2>Lista de Autos</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Marca</th>
+                        <th>Color</th>
+                        <th>Motor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for auto in autos %}
+                    <tr>
+                        <td>{{ auto.marca }}</td>
+                        <td>{{ auto.color }}</td>
+                        <td>{{ auto.motor }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
     </main>
 
     <footer>

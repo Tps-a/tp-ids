@@ -185,7 +185,6 @@
     color: #ccc;
 }
 
-/*boton diseñar auto*/
 .btn-diseña {
     display: block;
     width: 300px;
@@ -199,9 +198,26 @@
     line-height: 60px;
     border-radius: 30px;
     margin: 40px auto 0;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .btn-diseña:hover {
     background-color: #b00c0c;
+    transform: scale(1.05); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+}
+
+
+#sidebarIndicator {
+    opacity: 0.5;
+    transition: opacity 0.3s; 
+    color: white;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+}
+
+#sidebarIndicator:hover {
+    opacity: 1; 
 }

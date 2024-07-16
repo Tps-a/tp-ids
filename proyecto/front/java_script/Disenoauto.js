@@ -25,7 +25,7 @@ function init() {
     renderer.setSize(container.clientWidth, container.clientHeight);
 
     // Establecer el color de fondo del canvas
-    renderer.setClearColor(0xffffff); // Cambia este valor por el color que desees
+    renderer.setClearColor(0xffffff);
 
     // Crear los controles de órbita
     controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -62,7 +62,6 @@ function init() {
     document.querySelector('.right-arrow').addEventListener('click', () => changeCarModel('right'));
 }
 
-// Cargar el modelo 3D del auto
 function loadCarModel(modelPath, cameraPosition, controlsTarget) {
     const loader = new THREE.GLTFLoader();
     loader.load(modelPath, function(gltf) {
@@ -71,9 +70,8 @@ function loadCarModel(modelPath, cameraPosition, controlsTarget) {
         }
         carModel = gltf.scene;
 
-        // Centrar y escalar el modelo
         centerModel(carModel);
-        scaleModel(carModel, 1); // Ajusta `1` al tamaño objetivo que desees
+        scaleModel(carModel, 1);
 
         scene.add(carModel);
         resetCameraAndControls(cameraPosition, controlsTarget);
@@ -137,7 +135,7 @@ function animate() {
 function centerModel(model) {
     const box = new THREE.Box3().setFromObject(model);
     const center = box.getCenter(new THREE.Vector3());
-    model.position.sub(center); // Mueve el modelo al origen
+    model.position.sub(center);
 }
 
 function scaleModel(model, targetScale) {
@@ -154,5 +152,4 @@ function resetCameraAndControls(position, target) {
     controls.update();
 }
 
-// Inicializar la escena al cargar la página
 window.onload = init;

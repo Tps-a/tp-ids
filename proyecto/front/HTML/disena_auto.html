@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diseña tu auto</title>
-    <link rel="stylesheet" href="/css/diseno.css">
+    <link rel="stylesheet" href="/proyecto/front/css/diseno.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -16,7 +16,8 @@
     <header>
         <nav>
             <ul>
-                <li><a href="../html/main.html">Volver a la página principal</a></li>
+                <li><a href="/proyecto/front/HTML/main.html">Volver a la página principal</a> </li>
+                
                 
             </ul>
         </nav>
@@ -38,24 +39,7 @@
 
           <section id="autos-table">
             <h2>Lista de Autos</h2>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Marca</th>
-                        <th>Color</th>
-                        <th>Motor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for auto in autos %}
-                    <tr>
-                        <td>{{ auto.marca }}</td>
-                        <td>{{ auto.color }}</td>
-                        <td>{{ auto.motor }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            
         </section>
     </main>
 
@@ -64,7 +48,7 @@
     </footer>
 
     
-    <script src="../js/Disenoauto.js"></script>
+    <script src="/proyecto/front/java_script/Disenoauto.js"></script>
 
 </body>
 

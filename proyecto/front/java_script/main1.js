@@ -1,5 +1,11 @@
 document.addEventListener('mousemove', (event) => {
-    if (event.clientX > window.innerWidth - 200) {
+    let distancia_borde;
+    if(sidebar.classList.contains('hidden')){
+        distancia_borde = 200;
+    }else{
+        distancia_borde = 340;
+    }
+    if (event.clientX > window.innerWidth - distancia_borde) {
         sidebar.classList.remove('hidden');
         sidebar.classList.add('show');
        

@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template
-from models import db, Auto  # Asegúrate de importar db y Auto correctamente
+from models import db, Auto  
 from models import obtener_marcas_disponibles
 
 app = Flask(__name__)

@@ -11,14 +11,10 @@
 </head>
 <body>
 
-
-  
     <header>
         <nav>
             <ul>
-                <li><a href="{{ url_for('home') }}">Volver a la página principal</a> </li>
-                
-                
+                <li><a href="{{ url_for('home') }}">Volver a la página principal</a></li>
             </ul>
         </nav>
     </header>
@@ -29,13 +25,13 @@
 
         <section id="car-display">
             <div id="car-container">
-                <canvas id="car-canvas" width="692" height="400"></canvas>              
+                <canvas id="car-canvas" width="692" height="400"></canvas>
                 <div class="arrow-container">
-                <button class="arrow-btn left-arrow">&#8592;</button>
-                <button class="arrow-btn right-arrow">&#8594;</button>
-              </div>
+                    <button class="arrow-btn left-arrow">&#8592;</button>
+                    <button class="arrow-btn right-arrow">&#8594;</button>
+                </div>
             </div>
-          </section>
+        </section>
 
         <section id="colores">
             <h2>Selecciona el color de tu auto</h2>
@@ -44,17 +40,20 @@
                 <button id="color-blue" class="color-option"></button>
                 <button id="color-green" class="color-option"></button>
             </div>
-            <div>
-                <button id="guardar" class="saveCar">Guardar Auto</button>
-            </div>
-    </main>
+        </section>
 
-    <footer id="footer_marca">
-        <p>&copy; 2024 - Página de Diseño de Auto</p>
-    </footer>
+        <section id="guardar-auto">
+            <h2>Guardar diseño de auto</h2>
+            <form id="guardarAutoForm">
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre del diseño">
+                <input type="text"  id="modelo_actual" name="modelo" placeholder="modelo del auto">
+                <input type="text"  id="color_actual" name="color" placeholder="color del auto">
+                <button type="submit">Guardar Diseño</button>
+            </form>
+        </section>
+    </main>
 
     <script src="{{ url_for('enviar_js', filename='Disenoauto.js') }}"></script>
 
 </body>
-
 </html>

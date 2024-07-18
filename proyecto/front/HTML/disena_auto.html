@@ -12,12 +12,26 @@
 <body>
 
     <header>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('home') }}">Volver a la página principal</a></li>
-            </ul>
+        <nav class="navbar">
+          <div class="navbar-toggle" onclick="toggleNavbar()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+          <ul class="navbar-menu">
+            <li class="navbar-item">
+              <a href="javascript:history.back()" class="navbar-link">
+                <i class="fas fa-arrow-left"></i>
+                Volver a la página anterior
+              </a>
+            </li>
+          </ul>
         </nav>
-    </header>
+        <div class="navbar-tooltip">
+          <p>Haz clic aquí para volver a la página anterior</p>
+          <div class="tooltip-arrow"></div>
+        </div>
+      </header>
 
     <main>
         <h1>Diseña tu auto</h1>

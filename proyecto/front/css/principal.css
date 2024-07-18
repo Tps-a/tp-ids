@@ -13,7 +13,7 @@
  body {
      margin: 0;
      padding: 0;
-     background-image: url(https://img.freepik.com/foto-gratis/vista-coche-marcha-alta-velocidad_23-2150635402.jpg?w=1380&t=st=1718684786~exp=1718685386~hmac=5c154b975a848792c74a1a9a92c9f9e0be9e762737c758d9601614bd1de0d90f);
+     background-image: url('/static/images/coche1.jpg');
      background-size: cover;
      background-position: center;
      background-repeat: no-repeat;

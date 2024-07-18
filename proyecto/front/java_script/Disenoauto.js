@@ -1,4 +1,4 @@
-let scene, camera, renderer, carModel, controls;
+let scene, camera, renderer, carModel, controls, color_actual;
 let modelPaths = [
     '../modelos/low_poly_small_car/scene.gltf',
     '../modelos/lowpoly_car_pack/scene.gltf',
@@ -105,6 +105,7 @@ function changeCarColor(color) {
                     child.material.color.set(color);
                 }
             }
+            color_actual = color;
         });
     }
 }
@@ -150,6 +151,22 @@ function resetCameraAndControls(position, target) {
     camera.position.copy(position);
     controls.target.copy(target);
     controls.update();
+}
+
+function guardar_auto() {
+    fetch("http://localhost:5000/guardar-auto", 
+        {method: "POST" , 
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify( {
+            color: color_actual,
+            motor: "motorPiola" //todavia no implementamos los motores
+            } )
+        } )
+
+        .then(response => response.json())
+        .then(data => {
+            console.log("respuesta: ",data.mensaje);
+        })
 }
 
 window.onload = init;

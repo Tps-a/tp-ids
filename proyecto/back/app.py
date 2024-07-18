@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify, make_response, send_from_directory, render_template
-from models import db, Auto, Marca #se pueden importar mas cosas 
+from flask_cors import CORS
+from models import db, Auto #se pueden importar mas cosas 
 import os
 
 app = Flask(__name__, template_folder='../front/HTML')
-port= 5000
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tu_base_de_datos.db' ## crear base de datos
+CORS(app)
+port = 5000
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db' ## crear base de datos
 ## crear base de datos con posgrest y poner la url de la base de datos arriba 
 
 @app.route('/')
@@ -15,18 +17,19 @@ def home():
 def disenar():
     return render_template('disena_auto.html')
 
-@app.route('/crear-auto', methods=['POST']) 
-def crear_auto():
-    data = request.json
-    nueva_marca = Marca(nombre=data['marca'])
-    db.session.add(nueva_marca)
-    db.session.commit()
+@app.route('/guardar-auto', methods=['POST']) 
+def guardar_auto():
     
-    nuevo_auto = Auto(marca=nueva_marca, color=data['color'], motor=data['motor'])
-    db.session.add(nuevo_auto)
+    data = request.get_json()
+    auto_nuevo = Auto(color = data.get("color"), motor = data.get("motor"))
+    db.session.add(auto_nuevo)
     db.session.commit()
+    return jsonify({'mensaje': 'Auto actualizado exitosamente'})
 
-    return jsonify({'mensaje': 'Auto creado exitosamente', 'id': nuevo_auto.id}), 201
+
+
+
+
 
 @app.route('/autos/<int:auto_id>', methods=['PUT'])
 def actualizar_auto(auto_id):
@@ -70,4 +73,7 @@ def enviar_modelos(filename):
 # initialize_app()
 
 if __name__ == '__main__':
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

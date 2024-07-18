@@ -111,9 +111,8 @@
 
 #sidebar a {
     text-decoration: none;
-    color: #bbbcbe;
+    animation: colorChange 5s infinite; 
     font-size: 16px;
-    transition: color 0.3s ease-in-out;
 }
 
 #sidebar a:hover {
@@ -141,13 +140,13 @@
 }
 @keyframes colorChange {
     0% {
-        color: rgb(168, 157, 157);
-    }
-    50% {
         color: rgb(208, 214, 124);
     }
+    50% {
+        color: rgb(83, 83, 76);
+    }
     100% {
-        color: rgb(71, 25, 29);
+        color: rgb(208, 214, 124);
     }
 }
 

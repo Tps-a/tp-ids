@@ -47,7 +47,10 @@
                 {% endif %}
             </h2>
             <ul>
-                <li><a href="#centroinfo">GARAJE</a></li>
+                <li><a href="#centroinfo">Garaje.</a></li>
+                {% if usuario %}
+                    <li><a href="{{ url_for('home') }}">Cerrar sesión.</a></li>
+                {% endif %}
             </ul>
         </aside>
 

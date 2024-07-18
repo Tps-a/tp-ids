@@ -38,17 +38,23 @@
 
         <div id="sidebarIndicator" style="position: fixed; right: 0; top: 50%; cursor: pointer; z-index: 1000;">></div>
         <aside id="sidebar" class="hidden">
-            <h2>Barra lateral</h2>
+            <h2>
+                Usuario: 
+                {% if usuario %}
+                    {{ usuario.n_usuario }}
+                {% else %}
+                    <a href="{{ url_for('login_page') }}" class="nav_boton">Sin iniciar sesión</a>
+                {% endif %}
+            </h2>
             <ul>
-                <li><a href="#centroinfo">Ir a Anuncios</a></li>
+                <li><a href="#centroinfo">GARAJE</a></li>
             </ul>
-            <p>Usuario: {{ usuario.n_usuario if usuario else 'Sin iniciar sesión' }}</p>
         </aside>
 
     </main>
   
     <footer id="footer_marca">
-        <p>&copy; 2024 - Página Principal</p>
+        <p>&copy; 2024 - BoverFC</p>
     </footer>
     
 

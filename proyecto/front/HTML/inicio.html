@@ -10,7 +10,6 @@
 <body>
     
     <main>
-
         <section id="login">
             <h2>INICIAR SESION</h2>
             <form id="login_form" onsubmit="login(event)">
@@ -22,7 +21,10 @@
             </form>
         </section>
 
-        <a href="{{ url_for('register_page') }}" class="btn-registro">Registrarse</a>
+        <ul class="nav_botones">
+            <li><a href="{{ url_for('register_page') }}" class="btn-registro">Registrarse.</a></li>
+            <li><a href="{{ url_for('home') }}">Volver a la página principal.</a></li>
+        </ul>
 
     </main>
   
@@ -32,8 +34,7 @@
 
     <script src="{{ url_for('enviar_js', filename='inicio.js') }}"></script>
 
-    <li><a href="{{ url_for('home') }}">Volver a la página principal</a> </li>
-
+    
 </body>
 
 

@@ -10,9 +10,8 @@
 <body>
     
     <main>
-
         <section id="register">
-            <h2>REGISTRAR USUARIO</h2>
+            <h2>REGISTRARSE!</h2>
             <form id="register_form" onsubmit="register(event)">
                 <p>Nombre de Usuario:</p>
                 <input type="text" id="usuario" name="usuario" placeholder="Nombre de Usuario" required>
@@ -22,6 +21,7 @@
             </form>
         </section>
 
+        <a href="{{ url_for('home') }}">Volver a la página principal</a>
     </main>
   
     <footer id="footer_marca">
@@ -30,7 +30,6 @@
 
     <script src="{{ url_for('enviar_js', filename='inicio.js') }}"></script>
 
-    <li><a href="{{ url_for('home') }}">Volver a la página principal</a> </li>
 
 </body>
 

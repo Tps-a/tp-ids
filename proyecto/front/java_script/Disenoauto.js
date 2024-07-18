@@ -53,9 +53,10 @@ function init() {
     loadCarModel(modelPaths[currentModelIndex], new THREE.Vector3(0.5, -2, 1), new THREE.Vector3(0, -2.3, 0));
 
     // Manejar cambio de color
-    document.getElementById('color-red').addEventListener('click', () => changeCarColor('red'));
-    document.getElementById('color-blue').addEventListener('click', () => changeCarColor('blue'));
-    document.getElementById('color-green').addEventListener('click', () => changeCarColor('green'));
+    document.getElementById('color-picker').addEventListener('input', (event) => {
+        const selectedColor = event.target.value;
+        changeCarColor(selectedColor);
+    });
 
     // Manejar cambio de modelo con las flechas
     document.querySelector('.left-arrow').addEventListener('click', () => changeCarModel('left'));
@@ -108,7 +109,6 @@ function changeCarColor(color) {
         });
     }
 }
-
 
 function changeCarModel(direction) {
     if (direction === 'left') {

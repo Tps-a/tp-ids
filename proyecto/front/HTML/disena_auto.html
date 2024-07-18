@@ -48,13 +48,11 @@
         </section>
 
         <section id="colores">
-            <h2>Selecciona el color de tu auto</h2>
-            <div id="color-options">
-                <button id="color-red" class="color-option"></button>
-                <button id="color-blue" class="color-option"></button>
-                <button id="color-green" class="color-option"></button>
-            </div>
-        </section>
+          <h2>Selecciona el color de tu auto</h2>
+          <div id="color-options">
+              <input type="color" id="color-picker">
+          </div>
+      </section>
 
         <section id="guardar-auto">
             <h2>Guardar diseño de auto</h2>
@@ -65,6 +63,7 @@
                 <button type="submit">Guardar Diseño</button>
             </form>
         </section>
+        <div class="spacer"></div>
     </main>
 
     <script src="{{ url_for('enviar_js', filename='Disenoauto.js') }}"></script>

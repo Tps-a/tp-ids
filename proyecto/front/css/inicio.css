@@ -1,33 +1,42 @@
-.login-container {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('/static/images/23624.jpg');
 }
-.login-container h2 {
+
+main {
+    border: 2px solid black;
+    padding: 40px;
+    border-radius: 3%;
+    background-color: rgb(192, 192, 192);
+    animation: breathing 3s ease-in-out infinite;
+}
+
+@keyframes breathing {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.10);
+    }
+}
+
+#login, #register {
     margin-bottom: 20px;
-    color: #333333;
 }
-.login-container input[type="text"],
-.login-container input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
+
+.nav_botones {
+    display: block;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
-.login-container button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.login-container button:hover {
-    background-color: #45a049;
+
+a{
+    color: black;
 }
 
 #footer_marca {

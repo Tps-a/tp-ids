@@ -24,9 +24,8 @@ def main(usuario_id):
 def disenar():
     return render_template('disena_auto.html')
 
-@app.route('/guardar-auto', methods=['POST']) 
+@app.route('/disenar/guardar-auto', methods=['POST']) 
 def guardar_auto():
-
     data = request.get_json()  
     auto_nuevo = Auto(color = data.get("color"), nombre = data.get("nombre"), modelo = data.get("modelo"))
     db.session.add(auto_nuevo)

@@ -156,8 +156,8 @@ function resetCameraAndControls(position, target) {
 function guardar_auto(event) {
     event.preventDefault()
     let nombre_nuevo = document.getElementById("nombre").value;
-    let modelo_nuevo = document.getElementById("modelo").value;
-    fetch("http://localhost:5000/guardar-auto", 
+    let modelo_nuevo = modelPaths[currentModelIndex];
+    fetch(window.location.href + "/guardar-auto",
         {method: "POST" , 
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify( {

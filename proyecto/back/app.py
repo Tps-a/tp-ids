@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, make_response, send_from_directory, render_template
+from flask import Flask, request, jsonify, make_response, send_from_directory, render_template, redirect, url_for
 from flask_cors import CORS
 from models import db, Auto, Usuario #se pueden importar mas cosas 
 import os
@@ -12,6 +12,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db' ## crear base de datos
 @app.route('/')
 def home():
     return render_template('main.html')
+
+@app.route('/main/<usuario_id>')
+def main(usuario_id):
+    usuario = Usuario.query.get(usuario_id)
+    if not usuario:
+        return redirect(url_for('login_page'))
+    return render_template('main.html', usuario=usuario)
 
 @app.route('/disenar')
 def disenar():
@@ -27,24 +34,32 @@ def guardar_auto():
     
     return jsonify({'mensaje': 'Auto actualizado exitosamente'})
 
+@app.route('/register_page')
+def register_page():
+    return render_template('register.html')
+
+@app.route('/registrarse', methods=['POST']) 
+def register():
+    data = request.get_json()  
+    usuario_existente = Usuario.query.filter_by(usuario=data.get("usuario")).first()
+    if usuario_existente:
+        return jsonify({'error': 'Este usuario ya existe!'})
+    usuario_nuevo = Usuario(usuario = data.get("usuario"), password = data.get("password"))
+    db.session.add(usuario_nuevo)
+    db.session.commit()
+    return jsonify({'mensaje': 'Inicio de sesion exitoso!'})
+
 @app.route('/login_page')
 def login_page():
     return render_template('inicio.html')
 
-@app.route('/loguearse', methods=['POST']) 
+@app.route('/login', methods=['POST'])
 def login():
-
-    data = request.get_json()  
-    usuario_existente = Usuario.query.filter_by(usuario=data.get("usuario")).first()
-    if usuario_existente:
-        return jsonify({'error': 'Usuario existente'}), 409
-    
-    usuario_nuevo = Usuario(usuario = data.get("usuario"), password = data.get("password"))
-    db.session.add(usuario_nuevo)
-    db.session.commit()
-    
-    return jsonify({'mensaje': 'Inicio de sesion exitoso'})
-
+    data = request.get_json()
+    usuario = Usuario.query.filter_by(usuario=data.get("usuario"), password=data.get("password")).first()
+    if not usuario:
+        return jsonify({'error': 'Credenciales inválidas'})
+    return jsonify({'usuario_id': usuario.id})
 
 
 

@@ -8,7 +8,8 @@ class Auto(db.Model):
     __tablename__ = 'autos'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     color = db.Column(db.String(50), nullable=False)
-    motor = db.Column(db.String(50), nullable=False)
+    nombre = db.Column(db.String(50), nullable=False)
+    modelo = db.Column(db.String(50), nullable=False)
 
 
 """

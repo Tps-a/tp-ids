@@ -153,13 +153,17 @@ function resetCameraAndControls(position, target) {
     controls.update();
 }
 
-function guardar_auto() {
+function guardar_auto(event) {
+    event.preventDefault()
+    let nombre_nuevo = document.getElementById("nombre").value;
+    let modelo_nuevo = document.getElementById("modelo").value;
     fetch("http://localhost:5000/guardar-auto", 
         {method: "POST" , 
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify( {
+            nombre: nombre_nuevo,
+            modelo: modelo_nuevo,
             color: color_actual,
-            motor: "motorPiola" //todavia no implementamos los motores
             } )
         } )
 

@@ -11,6 +11,11 @@ class Auto(db.Model):
     nombre = db.Column(db.String(50), nullable=False)
     modelo = db.Column(db.String(50), nullable=False)
 
+class Usuario(db.Model):
+    __tablename__ = 'usuarios'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    usuario = db.Column(db.String(50), nullable=False, unique=True)
+    password = db.Column(db.String(50), nullable=False)
 
 """
 class Marca(db.Model):

@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, make_response, send_from_directory, render_template
 from flask_cors import CORS
-from models import db, Auto #se pueden importar mas cosas 
+from models import db, Auto, Usuario #se pueden importar mas cosas 
 import os
 
 app = Flask(__name__, template_folder='../front/HTML', static_folder='../static')
@@ -26,6 +26,24 @@ def guardar_auto():
     db.session.commit()
     
     return jsonify({'mensaje': 'Auto actualizado exitosamente'})
+
+@app.route('/login_page')
+def login_page():
+    return render_template('inicio.html')
+
+@app.route('/loguearse', methods=['POST']) 
+def login():
+
+    data = request.get_json()  
+    usuario_existente = Usuario.query.filter_by(usuario=data.get("usuario")).first()
+    if usuario_existente:
+        return jsonify({'error': 'Usuario existente'}), 409
+    
+    usuario_nuevo = Usuario(usuario = data.get("usuario"), password = data.get("password"))
+    db.session.add(usuario_nuevo)
+    db.session.commit()
+    
+    return jsonify({'mensaje': 'Inicio de sesion exitoso'})
 
 
 

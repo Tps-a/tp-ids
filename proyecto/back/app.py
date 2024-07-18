@@ -3,11 +3,11 @@ from flask_cors import CORS
 from models import db, Auto #se pueden importar mas cosas 
 import os
 
-app = Flask(__name__, template_folder='../front/HTML')
+app = Flask(__name__, template_folder='../front/HTML', static_folder='../static')
 CORS(app)
 port = 5000
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db' ## crear base de datos
-## crear base de datos con posgrest y poner la url de la base de datos arriba 
+
 
 @app.route('/')
 def home():

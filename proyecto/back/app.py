@@ -11,9 +11,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db' ## crear base de datos
 def home():
     return render_template('main.html')
 
-@app.route('/<usuario_id>')
-def main(usuario_id):
-    usuario = Usuario.query.get(usuario_id)
+@app.route('/<n_usuario>')
+def home_logueado(n_usuario):
+    usuario = Usuario.query.get(n_usuario)
     if not usuario:
         return redirect(url_for('login_page'))
     return render_template('main.html', usuario=usuario)
@@ -38,10 +38,10 @@ def register_page():
 @app.route('/register_page/registrarse', methods=['POST']) 
 def register():
     data = request.get_json()  
-    usuario_existente = Usuario.query.filter_by(usuario=data.get("usuario")).first()
+    usuario_existente = Usuario.query.filter_by(n_usuario=data.get("usuario")).first()
     if usuario_existente:
         return jsonify({'error': 'Este usuario ya existe!'})
-    usuario_nuevo = Usuario(usuario = data.get("usuario"), password = data.get("password"))
+    usuario_nuevo = Usuario(n_usuario = data.get("usuario"), password = data.get("password"))
     db.session.add(usuario_nuevo)
     db.session.commit()
     return jsonify({'mensaje': 'Usuario registrado!'})
@@ -53,15 +53,15 @@ def login_page():
 @app.route('/login_page/login', methods=['POST'])
 def login():
     data = request.get_json()
-    usuario = Usuario.query.filter_by(usuario=data.get("usuario"), password=data.get("password")).first()
+    usuario = Usuario.query.filter_by(n_usuario=data.get("usuario"), password=data.get("password")).first()
     if not usuario:
         return jsonify({'error': 'Credenciales inválidas'})
-    return jsonify({'usuario_id': usuario.id})
+    return jsonify({'usuario': usuario.n_usuario})
 
 
 
 
-
+"""
 @app.route('/autos/<int:auto_id>', methods=['PUT'])
 def actualizar_auto(auto_id):
     auto = Auto.query.get_or_404(auto_id)
@@ -83,6 +83,7 @@ def eliminar_auto(auto_id):
     db.session.delete(auto)
     db.session.commit()
     return jsonify({'mensaje': 'Auto eliminado exitosamente'})
+"""
 
 @app.route('/css/<path:filename>')
 def enviar_css(filename):

@@ -46,14 +46,17 @@ function login(event) {
     .then(response => {
         if (!response.ok) {
             return response.json().then(data => {
-                alert(data.error)
-                throw new Error(data.error)
+                alert(data.error);
+                throw new Error(data.error);
             });
         }
         return response.json()
     })
     .then(data => {
-        window.location.href = `/${data.usuario_id}`
+        if(data.usuario){
+            window.location.href = `/${data.usuario}`; 
+        }
+        
     })
     .catch(error => {
         console.error('Error:', error)

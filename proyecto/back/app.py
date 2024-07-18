@@ -1,10 +1,8 @@
 from flask import Flask, request, jsonify, make_response, send_from_directory, render_template, redirect, url_for
-from flask_cors import CORS
 from models import db, Auto, Usuario #se pueden importar mas cosas 
 import os
 
 app = Flask(__name__, template_folder='../front/HTML', static_folder='../static')
-CORS(app)
 port = 5000
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db' ## crear base de datos
 

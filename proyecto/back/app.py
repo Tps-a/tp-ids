@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, make_response, send_from_directory, r
 from models import db, Auto, Marca #se pueden importar mas cosas 
 import os
 
-app = Flask(__name__, template_folder='../front/HTML')
+app = Flask(__name__, template_folder='../front/HTML', static_folder='../static')
 port= 5000
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tu_base_de_datos.db' ## crear base de datos
 ## crear base de datos con posgrest y poner la url de la base de datos arriba 

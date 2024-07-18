@@ -3,7 +3,7 @@ function register(event) {
     let usuario_nuevo = document.getElementById("usuario").value
     let password_nuevo = document.getElementById("password").value
     
-    fetch("http://localhost:5000/registrarse", 
+    fetch(window.location.href + "/registrarse", 
         {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
@@ -33,7 +33,7 @@ function login(event) {
     let usuario = document.getElementById("usuario").value
     let password = document.getElementById("password").value
 
-    fetch("http://localhost:5000/login", 
+    fetch(window.location.href + "/login", 
         {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
@@ -53,7 +53,7 @@ function login(event) {
         return response.json()
     })
     .then(data => {
-        window.location.href = `/main/${data.usuario_id}`
+        window.location.href = `/${data.usuario_id}`
     })
     .catch(error => {
         console.error('Error:', error)

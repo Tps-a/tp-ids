@@ -11,7 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db' ## crear base de datos
 def home():
     return render_template('main.html')
 
-@app.route('/main/<usuario_id>')
+@app.route('/<usuario_id>')
 def main(usuario_id):
     usuario = Usuario.query.get(usuario_id)
     if not usuario:
@@ -35,7 +35,7 @@ def guardar_auto():
 def register_page():
     return render_template('register.html')
 
-@app.route('/registrarse', methods=['POST']) 
+@app.route('/register_page/registrarse', methods=['POST']) 
 def register():
     data = request.get_json()  
     usuario_existente = Usuario.query.filter_by(usuario=data.get("usuario")).first()
@@ -44,13 +44,13 @@ def register():
     usuario_nuevo = Usuario(usuario = data.get("usuario"), password = data.get("password"))
     db.session.add(usuario_nuevo)
     db.session.commit()
-    return jsonify({'mensaje': 'Inicio de sesion exitoso!'})
+    return jsonify({'mensaje': 'Usuario registrado!'})
 
 @app.route('/login_page')
 def login_page():
     return render_template('inicio.html')
 
-@app.route('/login', methods=['POST'])
+@app.route('/login_page/login', methods=['POST'])
 def login():
     data = request.get_json()
     usuario = Usuario.query.filter_by(usuario=data.get("usuario"), password=data.get("password")).first()

@@ -155,23 +155,30 @@ function resetCameraAndControls(position, target) {
 
 function guardar_auto(event) {
     event.preventDefault()
-    let nombre_nuevo = document.getElementById("nombre").value;
-    let modelo_nuevo = modelPaths[currentModelIndex];
-    fetch(window.location.href + "/guardar-auto",
-        {method: "POST" , 
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify( {
-            n_dueño: usuario.n_usuario,
-            nombre: nombre_nuevo,
-            modelo: modelo_nuevo,
-            color: color_actual,
-            } )
-        } )
-
-        .then(response => response.json())
-        .then(data => {
-            console.log("respuesta: ",data.mensaje);
-        })
+    console.log(n_usuario);
+    if (n_usuario && color_actual){
+        let nombre_nuevo = document.getElementById("nombre").value;
+        let modelo_nuevo = modelPaths[currentModelIndex];
+        fetch(window.location.href + "/guardar-auto",
+            {method: "POST" , 
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify( {
+                nombre: nombre_nuevo,
+                modelo: modelo_nuevo,
+                color: color_actual,
+                } )
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("respuesta: ",data.mensaje);
+            })
+        
+    }else if (!n_usuario ){
+        alert("Debe estar logueado para realizar esa acción");
+    }else{
+        alert("Debe elegir algun color")
+    }
+    
 }
 
 window.onload = init;

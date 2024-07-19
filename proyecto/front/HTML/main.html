@@ -13,7 +13,7 @@
     <header id="nav_inicial">
         <nav>
             <ul class="nav_botones">
-                {% if not usuario %}
+                {% if not n_usuario %}
                     <li><a href="{{ url_for('login_page') }}" class="nav_boton">Inicio sesión</a></li>
                 {% endif %}    
                 <li><a href="#"class="nav_boton">edicion</a></li>
@@ -43,14 +43,14 @@
         <aside id="sidebar" class="hidden">
             <h2>
                 Usuario: 
-                {% if usuario %}
-                    {{ usuario.n_usuario }}
+                {% if n_usuario %}
+                    {{n_usuario }}
                 {% else %}
                     <a href="{{ url_for('login_page') }}" class="nav_boton">Sin iniciar sesión</a>
                 {% endif %}
             </h2>
             <ul>
-                {% if usuario %}
+                {% if n_usuario %}
                     <li><a href="{{ url_for('garage') }}">Garaje.</a></li>
                     <li><a href="{{ url_for('home') }}">Cerrar sesión.</a></li>
                 {% endif %}

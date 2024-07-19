@@ -7,25 +7,28 @@ port = 5000
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db' ## crear base de datos
 
 
-@app.route('/')
-def home():
-    return render_template('main.html')
-
+@app.route('/', defaults = {"n_usuario" : None})
 @app.route('/<n_usuario>')
-def home_logueado(n_usuario):
-    usuario = Usuario.query.get(n_usuario)
-    if not usuario:
-        return redirect(url_for('login_page'))
-    return render_template('main.html', usuario=usuario)
+def home(n_usuario):
+    if not n_usuario:
+        return render_template('main.html')
+    return render_template('main.html', n_usuario = n_usuario)
+
 
 @app.route('/disenar')
 def disenar():
     return render_template('disena_auto.html')
 
-@app.route('/disenar/guardar-auto', methods=['POST']) 
-def guardar_auto():
+@app.route('/disenar/<n_usuario>')
+def disenar_logueado(n_usuario):
+    usuario = Usuario.query.get(n_usuario)
+    return render_template('disena_auto.html', usuario = usuario)
+
+
+@app.route('/disenar/<n_usuario>/guardar-auto', methods=['POST']) 
+def guardar_auto(n_usuario):
     data = request.get_json()  
-    auto_nuevo = Auto(color = data.get("color"), nombre = data.get("nombre"), modelo = data.get("modelo"))
+    auto_nuevo = Auto(n_dueño = n_usuario, color = data.get("color"), nombre = data.get("nombre"), modelo = data.get("modelo"))
     db.session.add(auto_nuevo)
     db.session.commit()
     

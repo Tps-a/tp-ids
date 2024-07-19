@@ -161,6 +161,7 @@ function guardar_auto(event) {
         {method: "POST" , 
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify( {
+            n_dueño: usuario.n_usuario,
             nombre: nombre_nuevo,
             modelo: modelo_nuevo,
             color: color_actual,

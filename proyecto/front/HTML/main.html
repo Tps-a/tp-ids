@@ -13,7 +13,9 @@
     <header id="nav_inicial">
         <nav>
             <ul class="nav_botones">
-                <li><a href="{{ url_for('login_page') }}" class="nav_boton">Inicio sesión</a></li>
+                {% if not usuario %}
+                    <li><a href="{{ url_for('login_page') }}" class="nav_boton">Inicio sesión</a></li>
+                {% endif %}    
                 <li><a href="#"class="nav_boton">edicion</a></li>
                 <li><a href="#" class="nav_boton">Contacto</a></li>
             </ul>
@@ -48,8 +50,8 @@
                 {% endif %}
             </h2>
             <ul>
-                <li><a href="{{ url_for('garage') }}">Garaje.</a></li>
                 {% if usuario %}
+                    <li><a href="{{ url_for('garage') }}">Garaje.</a></li>
                     <li><a href="{{ url_for('home') }}">Cerrar sesión.</a></li>
                 {% endif %}
             </ul>

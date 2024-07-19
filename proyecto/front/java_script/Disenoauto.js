@@ -155,7 +155,6 @@ function resetCameraAndControls(position, target) {
 
 function guardar_auto(event) {
     event.preventDefault()
-    console.log(n_usuario);
     if (n_usuario && color_actual){
         let nombre_nuevo = document.getElementById("nombre").value;
         let modelo_nuevo = modelPaths[currentModelIndex];

@@ -25,9 +25,7 @@ def disenar(n_usuario):
 
 @app.route('/disenar/<n_usuario>/guardar-auto', methods=['POST']) 
 def guardar_auto(n_usuario):
-    print(n_usuario)
     data = request.get_json()
-    print(data)
     auto_nuevo = Auto(n_dueño = n_usuario, color = data.get("color"), nombre = data.get("nombre"), modelo = data.get("modelo"))
     db.session.add(auto_nuevo)
     db.session.commit()

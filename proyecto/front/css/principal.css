@@ -11,14 +11,24 @@
  }
  
  body {
-     margin: 0;
-     padding: 0;
-     background-image: url(https://img.freepik.com/foto-gratis/vista-coche-marcha-alta-velocidad_23-2150635402.jpg?w=1380&t=st=1718684786~exp=1718685386~hmac=5c154b975a848792c74a1a9a92c9f9e0be9e762737c758d9601614bd1de0d90f);
-     background-size: cover;
-     background-position: center;
-     background-repeat: no-repeat;
-     background-attachment: fixed;
- }
+    margin: 0;
+    padding: 0;
+    background-image: url('/static/images/MESSI.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    animation: moveBackground 15s linear infinite;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
  
  
  .nav_botones {

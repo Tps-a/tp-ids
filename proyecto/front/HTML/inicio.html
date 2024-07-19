@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pagina inicial</title>
+    <title>Página Inicial</title>
     <link rel="stylesheet" href="../css/inicio.css">
 </head>
 
@@ -11,21 +11,20 @@
     
     <main>
         <section id="login">
-            <h2>INICIAR SESION</h2>
+            <h2>INICIAR SESIÓN</h2>
             <form id="login_form" onsubmit="login(event)">
-                <p>Nombre de Usuario:</p>
+                <label for="usuario">Nombre de Usuario:</label>
                 <input type="text" id="usuario" name="usuario" placeholder="Nombre de Usuario" required>
-                <p> Contraseña:</p> 
-                <input type="password"  id="password" name="contraseña" placeholder="Contraseña..." required>
-                <button type="submit">Loguearse</button>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="contraseña" placeholder="Contraseña" required>
+                <button type="submit" class="btn-login">Loguearse</button>
             </form>
         </section>
 
         <ul class="nav_botones">
-            <li><a href="{{ url_for('register_page') }}" class="btn-registro">Registrarse.</a></li>
-            <li><a href="{{ url_for('home') }}">Volver a la página principal.</a></li>
+            <li><a href="{{ url_for('register_page') }}" class="btn-registro">Registrarse</a></li>
+            <li><a href="{{ url_for('home') }}">Volver a la página principal</a></li>
         </ul>
-
     </main>
   
     <footer id="footer_marca">
@@ -33,9 +32,5 @@
     </footer>
 
     <script src="{{ url_for('enviar_js', filename='inicio.js') }}"></script>
-
-    
 </body>
-
-
 </html>

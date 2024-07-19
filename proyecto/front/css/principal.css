@@ -88,7 +88,7 @@
 }
 #sidebar.show {
     transform: translateX(0);
-    background-color: rgba(44, 32, 32, 0.8);
+    background-color: rgba(11, 5, 22, 0.8);
     backdrop-filter: blur(5px);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
 }
@@ -177,7 +177,7 @@
 }
 
 #footer_marca:hover {
-    background-color: rgba(77, 5, 5, 0.9);
+    background-color: rgba(23, 17, 38, 0.9);
     padding: 15px;
 }
 
@@ -209,7 +209,7 @@
 }
 
 .btn-diseña:hover {
-    background-color: #b00c0c;
+    background-color: #0a061d;
     transform: scale(1.05); 
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
 }

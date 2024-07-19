@@ -15,14 +15,12 @@ def home(n_usuario):
     return render_template('main.html', n_usuario = n_usuario)
 
 
-@app.route('/disenar')
-def disenar():
-    return render_template('disena_auto.html')
-
+@app.route('/disenar', defaults = {"n_usuario" : None})
 @app.route('/disenar/<n_usuario>')
-def disenar_logueado(n_usuario):
-    usuario = Usuario.query.get(n_usuario)
-    return render_template('disena_auto.html', usuario = usuario)
+def disenar(n_usuario):
+    if not n_usuario:
+        return render_template('disena_auto.html')
+    return render_template('disena_auto.html', n_usuario = n_usuario)
 
 
 @app.route('/disenar/<n_usuario>/guardar-auto', methods=['POST']) 

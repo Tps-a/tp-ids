@@ -58,7 +58,9 @@ def login():
         return jsonify({'error': 'Credenciales inválidas'})
     return jsonify({'usuario': usuario.n_usuario})
 
-
+@app.route('/garage')
+def garage():
+    return render_template('garage.html')
 
 
 """

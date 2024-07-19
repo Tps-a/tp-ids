@@ -99,9 +99,6 @@ function changeCarColor(color) {
                 if (child.name.includes('Body_Color1_0')) {
                     child.material.color.set(color);
                 }
-                if (child.name.includes('Body_Color1_0')) {
-                    child.material.color.set(color);
-                }
                 if (child.name.includes('Body_Color2_0')) {
                     child.material.color.set(color);
                 }
@@ -111,7 +108,7 @@ function changeCarColor(color) {
     }
 }
 
-function changeCarModel(direction) {
+function changeCarModel(direction) { //mod
     if (direction === 'left') {
         currentModelIndex = (currentModelIndex - 1 + modelPaths.length) % modelPaths.length;
     } else if (direction === 'right') {
@@ -153,31 +150,6 @@ function resetCameraAndControls(position, target) {
     controls.update();
 }
 
-function guardar_auto(event) {
-    event.preventDefault()
-    if (n_usuario && color_actual){
-        let nombre_nuevo = document.getElementById("nombre").value;
-        let modelo_nuevo = modelPaths[currentModelIndex];
-        fetch(window.location.href + "/guardar-auto",
-            {method: "POST" , 
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify( {
-                nombre: nombre_nuevo,
-                modelo: modelo_nuevo,
-                color: color_actual,
-                } )
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("respuesta: ",data.mensaje);
-            })
-        
-    }else if (!n_usuario ){
-        alert("Debe estar logueado para realizar esa acción");
-    }else{
-        alert("Debe elegir algun color")
-    }
-    
-}
+
 
 window.onload = init;

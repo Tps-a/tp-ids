@@ -177,7 +177,7 @@ body::before {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  color: #d1d1d1;
+  color: gray;
   font-size: 16px;
   padding: 10px 15px;
   border-radius: 5px;
@@ -185,8 +185,8 @@ body::before {
 }
 
 .navbar-link:hover {
-  background-color: #8e8e8e;
-  color: #000000;
+  background-color: gray;
+  color:  #000000;
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

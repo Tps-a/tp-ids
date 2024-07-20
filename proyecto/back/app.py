@@ -61,7 +61,7 @@ def login():
 
 @app.route('/garage/<n_usuario>')
 def garage(n_usuario):
-    return render_template('garage.html', n_usuraio = n_usuario)
+    return render_template('garage.html', n_usuario = n_usuario)
     
 
 @app.route('/garage/<n_usuario>/autos')

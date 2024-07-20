@@ -142,7 +142,6 @@ function changeCarModel(direction) {
 function cambiar_nombre_auto() {
     const recuadro_nombre_auto = document.getElementById('car-name');
     recuadro_nombre_auto.textContent = auto.nombre;
-    console.log(auto.nombre);
 }
 
 function animate() {

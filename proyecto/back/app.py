@@ -26,11 +26,15 @@ def disenar(n_usuario):
 @app.route('/disenar/<n_usuario>/guardar-auto', methods=['POST']) 
 def guardar_auto(n_usuario):
     data = request.get_json()
-    auto_nuevo = Auto(n_dueño = n_usuario, color = data.get("color"), nombre = data.get("nombre"), modelo = data.get("modelo"))
-    db.session.add(auto_nuevo)
-    db.session.commit()
-    
-    return jsonify({'mensaje': 'Auto actualizado exitosamente'})
+    auto_nombre_repetido = Auto.query.filter_by(n_dueño = n_usuario, nombre = data.get("nombre")).first()
+    if auto_nombre_repetido:
+        return jsonify({'error': 'Ya tiene un auto con ese nombre'})
+    else:
+        auto_nuevo = Auto(n_dueño = n_usuario, color = data.get("color"), nombre = data.get("nombre"), modelo = data.get("modelo"))
+        db.session.add(auto_nuevo)
+        db.session.commit()
+        return jsonify({'mensaje': 'Auto actualizado exitosamente'})
+
 
 @app.route('/register_page')
 def register_page():
@@ -39,7 +43,7 @@ def register_page():
 @app.route('/register_page/registrarse', methods=['POST']) 
 def register():
     data = request.get_json()  
-    usuario_existente = Usuario.query.filter_by(n_usuario=data.get("usuario")).first()
+    usuario_existente = Usuario.query.filter_by(n_usuario = data.get("usuario")).first()
     if usuario_existente:
         return jsonify({'error': 'Este usuario ya existe!'})
     usuario_nuevo = Usuario(n_usuario = data.get("usuario"), password = data.get("password"))
@@ -51,7 +55,7 @@ def register():
 def login_page():
     return render_template('inicio.html')
 
-@app.route('/login_page/login', methods=['POST'])
+@app.route('/login_page/login', methods = ['POST'])
 def login():
     data = request.get_json()
     usuario = Usuario.query.filter_by(n_usuario=data.get("usuario"), password=data.get("password")).first()
@@ -63,6 +67,8 @@ def login():
 def garage(n_usuario):
     return render_template('garage.html', n_usuario = n_usuario)
     
+
+
 
 @app.route('/garage/<n_usuario>/autos')
 def autos_usuario(n_usuario): 

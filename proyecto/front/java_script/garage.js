@@ -7,7 +7,7 @@ let modelPaths = [
 
 let currentModelIndex = 0;
 let autos_usuario;
-let cantidad_autos;
+let cantidad_autos = 0;
 let auto;
 
 fetch(window.location.href + "/autos")
@@ -20,11 +20,13 @@ fetch(window.location.href + "/autos")
     .then(data => {
         if(data.error){
             alert(data.error)
-        }else{
+        }else if (data != ""){
             autos_usuario = data;
             cantidad_autos = data.length;
             auto = autos_usuario[0];
             init();
+        }else{
+            alert ("No tiene ningun auto")
         }
     });
 
@@ -175,30 +177,36 @@ function resetCameraAndControls(position, target) {
 }
 
 function borrar_auto(){
-    fetch(window.location.href + "/" +auto.nombre,
-        {method: "DELETE"})
-        .then(response => response.json())
-        .then(data => {
-            if (data.mensaje){
-                alert(data.mensaje);
-                let nuevo_tamaño = cantidad_autos - 1;
-                if(nuevo_tamaño != 0) {
-                    let aux = new Array(nuevo_tamaño);
-                    let j = 0;
-                    for(let i = 0; i < cantidad_autos; i++){
-                        if(!i == currentModelIndex){
-                            aux[j] = autos_usuario[i];
-                            j++;
+    if(cantidad_autos !=0){
+        fetch(window.location.href + "/" +auto.nombre,
+            {method: "DELETE"})
+            .then(response => response.json())
+            .then(data => {
+                if (data.mensaje){
+                    alert(data.mensaje);
+                    let nuevo_tamaño = cantidad_autos - 1;
+                    if(nuevo_tamaño != 0) {
+                        let aux = new Array(nuevo_tamaño);
+                        let j = 0;
+                        for(let i = 0; i < cantidad_autos; i++){
+                            if(!i == currentModelIndex){
+                                aux[j] = autos_usuario[i];
+                                j++;
+                            }
                         }
+                        autos_usuario = aux;
+                        cantidad_autos = nuevo_tamaño;
+                        currentModelIndex = (currentModelIndex) % cantidad_autos;
+                        changeCarModel("iniciar");
+                    }else{
+                        location.reload();
                     }
-                    autos_usuario = aux;
-                    cantidad_autos = nuevo_tamaño;
-                    currentModelIndex = (currentModelIndex) % cantidad_autos;
-                    changeCarModel("iniciar");
-                }else{
-                    location.reload();
+    
                 }
+            })
 
-            }
-        })
+    }else {
+        alert("No tiene ningun auto para eliminar")
+    }
+    
 }

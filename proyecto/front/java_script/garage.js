@@ -61,7 +61,7 @@ function init() {
     scene.add(directionalLight);
 
     // Cargar el modelo 3D inicial del auto
-    loadCarModel(auto.modelo, new THREE.Vector3(0.5, -2, 1), new THREE.Vector3(0, -2.3, 0));
+    changeCarModel("iniciar");
 
     // Manejar cambio de modelo con las flechas
     document.querySelector('.left-arrow').addEventListener('click', () => changeCarModel('left'));

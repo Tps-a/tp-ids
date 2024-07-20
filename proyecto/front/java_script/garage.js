@@ -175,7 +175,7 @@ function resetCameraAndControls(position, target) {
 }
 
 function borrar_auto(){
-    fetch(window.location.href + auto.nombre,
+    fetch(window.location.href + "/" +auto.nombre,
         {method: "DELETE" , 
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify( {

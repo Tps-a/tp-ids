@@ -169,7 +169,11 @@ function guardar_auto(event) {
             })
             .then(response => response.json())
             .then(data => {
-                console.log("respuesta: ",data.mensaje);
+                if (data.error){
+                    alert(data.error);
+                }else{
+                    alert(data.mensaje);
+                }
             })
         
     }else if (!n_usuario ){

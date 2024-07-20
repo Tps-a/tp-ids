@@ -25,6 +25,9 @@ fetch(window.location.href + "/autos")
 function init() {
     const canvas = document.getElementById('car-canvas');
     const container = document.getElementById('car-container');
+    
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
 
     // Crear la escena
     scene = new THREE.Scene();
@@ -34,6 +37,7 @@ function init() {
 
     // Crear el renderizador
     renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
 
     // Establecer el color de fondo del renderizador como transparente
     renderer.setClearColor(0x000000, 0);
@@ -42,7 +46,7 @@ function init() {
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.25;
-    controls.enableZoom = true;
+    controls.enableZoom = false;
 
     // Ajustar el tamaño del renderizador cuando la ventana cambia de tamaño
     window.addEventListener('resize', () => {

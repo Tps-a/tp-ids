@@ -13,15 +13,19 @@ let auto;
 fetch(window.location.href + "/autos")
     .then(response => {
         if (!response.ok) {
-            alert("Error");
+            console.log("Error de respuesta");
         }
         return response.json();
     })
     .then(data => {
-        autos_usuario = data;
-        cantidad_autos = data.length;
-        auto = autos_usuario[0];
-        init();
+        if(data.error){
+            alert(data.error)
+        }else{
+            autos_usuario = data;
+            cantidad_autos = data.length;
+            auto = autos_usuario[0];
+            init();
+        }
     });
 
 function init() {
@@ -168,4 +172,22 @@ function resetCameraAndControls(position, target) {
     camera.position.copy(position);
     controls.target.copy(target);
     controls.update();
+}
+
+function borrar_auto(){
+    fetch(window.location.href + auto.nombre,
+        {method: "DELETE" , 
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify( {
+            nombre: auto.nombre
+            } )
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error){
+                alert(data.error);
+            }else{
+                alert(data.mensaje);
+            }
+        })
 }

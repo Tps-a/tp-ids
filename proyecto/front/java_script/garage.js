@@ -10,10 +10,6 @@ function init() {
     const canvas = document.getElementById('car-canvas');
     const container = document.getElementById('car-container');
 
-    // Ajustar el tamaño del canvas al contenedor
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-
     // Crear la escena
     scene = new THREE.Scene();
 
@@ -21,11 +17,10 @@ function init() {
     camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
 
     // Crear el renderizador
-    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
 
-    // Establecer el color de fondo del canvas
-    renderer.setClearColor(0xffffff);
+    // Establecer el color de fondo del renderizador como transparente
+    renderer.setClearColor(0x000000, 0);
 
     // Crear los controles de órbita
     controls = new THREE.OrbitControls(camera, renderer.domElement);

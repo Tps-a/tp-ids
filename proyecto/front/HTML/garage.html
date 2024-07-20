@@ -14,31 +14,20 @@
     
     <header>
         <section id="garage">
-            <h2>Garage de USUARIO</h2>
-            
+            <h2>Garage de {{n_usuario }}</h2>
         </section>
-
-        <a href="{{ url_for('home') }}">Volver a la página principal</a>
+        <a href="{{ url_for('home', n_usuario = n_usuario) }}">Volver a la página principal</a>
     </header>
 
     <main>
-        <h1>Diseña tu auto</h1>
-        <p>Aquí podrás personalizar tu auto soñado.</p>
 
         <section id="car-display">
             <div id="car-container">
-                <canvas id="car-canvas" width="692" height="400"></canvas>
+                <canvas id="car-canvas"></canvas>
                 <div class="arrow-container">
                     <button class="arrow-btn left-arrow">&#8592;</button>
                     <button class="arrow-btn right-arrow">&#8594;</button>
                 </div>
-            </div>
-        </section>
-       
-        <section id="colores">
-            <h2>Selecciona el color de tu auto</h2>
-            <div id="color-options">
-                <input type="color" id="color-picker">
             </div>
         </section>
 

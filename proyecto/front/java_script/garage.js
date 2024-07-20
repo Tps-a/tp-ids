@@ -22,7 +22,6 @@ fetch(window.location.href + "/autos")
         cantidad_autos = data.length;
         auto = autos_usuario[0];
         init();
-        cambiar_nombre_auto();
     });
 
 function init() {
@@ -135,7 +134,7 @@ function changeCarModel(direction) {
     }
     setTimeout(() => {
         changeCarColor(auto.color);
-    }, 50)
+    }, 70)
 
     cambiar_nombre_auto();
 }
@@ -143,6 +142,7 @@ function changeCarModel(direction) {
 function cambiar_nombre_auto() {
     const recuadro_nombre_auto = document.getElementById('car-name');
     recuadro_nombre_auto.textContent = auto.nombre;
+    console.log(auto.nombre);
 }
 
 function animate() {

@@ -1,10 +1,26 @@
-let scene, camera, renderer, carModel, controls, color_actual;
+let scene, camera, renderer, carModel, controls;
 let modelPaths = [
     '../modelos/low_poly_small_car/scene.gltf',
     '../modelos/lowpoly_car_pack/scene.gltf',
     '../modelos/generic_lowpoly_sedan/scene.gltf'
 ];
 let currentModelIndex = 0;
+let autos_usuario;
+let cantidad_autos;
+let auto;
+fetch(window.location.href + "/autos")
+.then (response => {
+    if (!response.ok) {
+        alert("Error");
+    }
+    return response.json();
+})
+.then(data =>{
+    autos_usuario = data;
+    cantidad_autos = data.length;
+    auto = autos_usuario[0];
+    init();
+})
 
 function init() {
     const canvas = document.getElementById('car-canvas');
@@ -45,17 +61,12 @@ function init() {
     scene.add(directionalLight);
 
     // Cargar el modelo 3D inicial del auto
-    loadCarModel(modelPaths[currentModelIndex], new THREE.Vector3(0.5, -2, 1), new THREE.Vector3(0, -2.3, 0));
-
-    // Manejar cambio de color
-    document.getElementById('color-picker').addEventListener('input', (event) => {
-        const selectedColor = event.target.value;
-        changeCarColor(selectedColor);
-    });
+    loadCarModel(auto.modelo, new THREE.Vector3(0.5, -2, 1), new THREE.Vector3(0, -2.3, 0));
 
     // Manejar cambio de modelo con las flechas
     document.querySelector('.left-arrow').addEventListener('click', () => changeCarModel('left'));
     document.querySelector('.right-arrow').addEventListener('click', () => changeCarModel('right'));
+    
 }
 
 function loadCarModel(modelPath, cameraPosition, controlsTarget) {
@@ -98,25 +109,28 @@ function changeCarColor(color) {
                     child.material.color.set(color);
                 }
             }
-            color_actual = color;
         });
     }
 }
 
-function changeCarModel(direction) { //mod
+function changeCarModel(direction) { 
     if (direction === 'left') {
-        currentModelIndex = (currentModelIndex - 1 + modelPaths.length) % modelPaths.length;
+        currentModelIndex = (currentModelIndex - 1 + cantidad_autos) % cantidad_autos;
     } else if (direction === 'right') {
-        currentModelIndex = (currentModelIndex + 1) % modelPaths.length;
+        currentModelIndex = (currentModelIndex + 1) % cantidad_autos;
     }
-
-    if (currentModelIndex === 0) {
-        loadCarModel(modelPaths[currentModelIndex], new THREE.Vector3(0.5, -2, 1), new THREE.Vector3(0, -2.3, 0));
-    } else if (currentModelIndex === 1) {
-        loadCarModel(modelPaths[currentModelIndex], new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0));
-    } else if (currentModelIndex === 2) {
-        loadCarModel(modelPaths[currentModelIndex], new THREE.Vector3(1, -0.7, 0), new THREE.Vector3(0, -0.7, 0));
+    auto = autos_usuario[currentModelIndex]
+    if (auto.modelo === modelPaths[0]) {
+        loadCarModel(modelPaths[0], new THREE.Vector3(0.5, -2, 1), new THREE.Vector3(0, -2.3, 0));
+    } else if (auto.modelo === modelPaths[1]) {
+        loadCarModel(modelPaths[1], new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0));
+    } else if (auto.modelo === modelPaths[2]) {
+        loadCarModel(modelPaths[2], new THREE.Vector3(1, -0.7, 0), new THREE.Vector3(0, -0.7, 0));
     }
+    setTimeout(() => {
+        changeCarColor(auto.color);
+    }, 50)
+    
 }
 
 function animate() {
@@ -145,21 +159,3 @@ function resetCameraAndControls(position, target) {
     controls.update();
 }
 
-fetch(window.location.href + "/autos")
-.then (response => {
-    if (!response.ok) {
-        alert("Error");
-    }
-    return response.json();
-})
-.then(data =>{
-    for(const auto of data){
-        console.log("nombre :", auto.nombre);
-        console.log("color :", auto.color);
-        console.log("modelo :", auto.modelo);
-    }
-})
-
-
-
-window.onload = init;

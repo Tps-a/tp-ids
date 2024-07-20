@@ -13,23 +13,26 @@
     <header>
         <section id="garage">
             <h2>Garage de {{n_usuario }}</h2>
-          
             <h3 id="car-name"></h3>
         </section>
-        <a href="javascript:history.back()">Volver a la página principal</a>
+        <div class="back-link-container">
+            <a href="javascript:history.back()" class="navbar-link">
+                <i class="fas fa-arrow-left"></i>
+                Volver a la página anterior
+            </a>
+        </div>
     </header>
     <main>
         <section id="car-display">
             <div id="car-container">
-                <canvas id="car-canvas" width="1500px" height="540px"></canvas>
+                <canvas id="car-canvas" width="1880px" height="640px"></canvas>
                 <div class="arrow-container">
                     <button class="arrow-btn left-arrow">&#8592;</button>
                     <button class="arrow-btn right-arrow">&#8594;</button>
                 </div>
             </div>
-            
         </section>
-        <button id = "btn_eliminar" onclick = "borrar_auto()" >Eliminar auto</button>
+        <button id="btn_eliminar" onclick="borrar_auto()">Eliminar auto</button>
     </main>    
     
     <script src="{{ url_for('enviar_js', filename='garage.js') }}"></script>

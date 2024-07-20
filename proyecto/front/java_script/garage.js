@@ -210,3 +210,15 @@ function borrar_auto(){
     }
     
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var link = document.querySelector('.navbar-link');
+
+    link.addEventListener('mouseenter', function() {
+        this.classList.add('animated');
+    });
+
+    link.addEventListener('mouseleave', function() {
+        this.classList.remove('animated');
+    });
+});

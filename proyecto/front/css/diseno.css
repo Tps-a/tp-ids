@@ -176,91 +176,48 @@ h2 {
 }
 
 /* link de regreso pag anterior  */
-.navbar {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  z-index: 1000;
-  transition: transform 0.3s ease;
-  transform: translateX(-100%);
-}
 
-.navbar:hover {
-  transform: translateX(0);
-}
+    .navbar-link {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: #007bff;
+        font-size: 16px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        background-color: #e7f1ff; /* Color de fondo suave */
+        transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    }
 
-.navbar-toggle {
-  display: none;
-  cursor: pointer;
-}
+    .navbar-link:hover {
+        background-color: #f0f0f0;
+        color: #0056b3;
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al hacer hover */
+    }
 
-.bar {
-  display: block;
-  width: 25px;
-  height: 3px;
-  margin: 5px auto;
-  background-color: #333;
-  transition: all 0.3s ease-in-out;
-}
+    .navbar-link:active {
+        transform: translateY(1px) scale(0.95);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-.navbar-menu {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
+    .navbar-link i {
+        margin-right: 5px;
+    }
 
-.navbar-item {
-  margin-bottom: 10px;
-}
+    .animated {
+        animation: pulse 0.5s ease-in-out infinite; /* Animación continua */
+    }
 
-.navbar-link {
-  display: flex;
-  align-items: center;
-  color: #333;
-  text-decoration: none;
-  padding: 10px 15px;
-  border-radius: 15px;
-  transition: background-color 0.3s ease;
-}
-
-.navbar-link:hover {
-  background-color: #f5f5f5;
-}
-
-.navbar-link i {
-  margin-right: 10px;
-}
-
-.navbar-tooltip {
-  position: absolute;
-  top: 60px;
-  left: 20px;
-  background-color: #333;
-  color: #fff;
-  padding: 10px 15px;
-  border-radius: 10px;
-  font-size: 14px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.navbar:hover .navbar-tooltip {
-  opacity: 1;
-  visibility: visible;
-}
-
-.tooltip-arrow {
-  position: absolute;
-  top: -8px;
-  left: 20px;
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid #333;
-}
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }

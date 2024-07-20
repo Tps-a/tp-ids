@@ -20,13 +20,15 @@ main {
   height: calc(100% - 100px); /* Ajusta la altura para el footer */
 }
 
-h2, a {
+h2 {
   display: flex;
   justify-content: center;
   color: rgb(42, 41, 53);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   animation: glow 1.5s infinite alternate; /* Efecto de brillo */
 }
+
+
 
 h3 {
   display: flex;
@@ -168,5 +170,63 @@ body::before {
 
   .arrow-btn {
       font-size: 30px; /* Smaller arrow buttons */
+  }
+}
+
+.navbar-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #d1d1d1;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.navbar-link:hover {
+  background-color: #8e8e8e;
+  color: #000000;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-link:active {
+  transform: translateY(1px) scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-link i {
+  margin-right: 5px;
+}
+
+.animated {
+  animation: pulse 0.5s ease-in-out infinite; /* Cambiamos a 'infinite' para que sea continuo */
+}
+
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.1);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+.animated {
+  animation: pulse 0.5s ease-in-out infinite; /* Cambiamos a 'infinite' para que sea continuo */
+}
+
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.1);
+  }
+  100% {
+      transform: scale(1);
   }
 }

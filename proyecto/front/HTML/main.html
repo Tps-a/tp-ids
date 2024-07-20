@@ -54,8 +54,10 @@
             </h2>
             <ul>
                 {% if n_usuario %}
-                    <li><a href="{{ url_for('garage') }}">Garaje.</a></li>
+                    <li><a href="{{ url_for('garage', n_usuario = n_usuario) }}">Garaje.</a></li>
                     <li><a href="{{ url_for('home') }}">Cerrar sesión.</a></li>
+                {% else %}     
+                    <a href="{{ url_for('disenar')}}" class="btn-diseña">Diseña tu Auto</a>
                 {% endif %}
             </ul>
         </aside>

@@ -145,6 +145,21 @@ function resetCameraAndControls(position, target) {
     controls.update();
 }
 
+fetch(window.location.href + "/autos")
+.then (response => {
+    if (!response.ok) {
+        alert("Error");
+    }
+    return response.json();
+})
+.then(data =>{
+    for(const auto of data){
+        console.log("nombre :", auto.nombre);
+        console.log("color :", auto.color);
+        console.log("modelo :", auto.modelo);
+    }
+})
+
 
 
 window.onload = init;

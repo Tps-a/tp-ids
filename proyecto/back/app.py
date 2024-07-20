@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__, template_folder='../front/HTML', static_folder='../static')
 port = 5000
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://leannnica:papu@localhost/boverfc' ## crear base de datos
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://jero:hola@localhost/tpintro' ## crear base de datos
 
 
 @app.route('/', defaults = {"n_usuario" : None})
@@ -61,8 +61,25 @@ def login():
 
 @app.route('/garage/<n_usuario>')
 def garage(n_usuario):
-    return render_template('garage.html', n_usuario = n_usuario)
+    return render_template('garage.html', n_usuraio = n_usuario)
     
+
+@app.route('/garage/<n_usuario>/autos')
+def autos_usuario(n_usuario): 
+    try:   
+        garage_usuario = db.session.get(Usuario, n_usuario).garage_usuario
+        garage_prosesado = []
+        for auto in garage_usuario:
+            garage_prosesado.append({
+                "color" : auto.color,
+                "nombre" : auto.nombre,
+                "modelo" : auto.modelo
+            })
+        
+        return jsonify(garage_prosesado)
+    
+    except Exception as error:
+        return jsonify({"error": error})     
 
 
 """

@@ -4,28 +4,31 @@ let modelPaths = [
     '../modelos/lowpoly_car_pack/scene.gltf',
     '../modelos/generic_lowpoly_sedan/scene.gltf'
 ];
+
 let currentModelIndex = 0;
 let autos_usuario;
 let cantidad_autos;
 let auto;
+
 fetch(window.location.href + "/autos")
-.then (response => {
-    if (!response.ok) {
-        alert("Error");
-    }
-    return response.json();
-})
-.then(data =>{
-    autos_usuario = data;
-    cantidad_autos = data.length;
-    auto = autos_usuario[0];
-    init();
-})
+    .then(response => {
+        if (!response.ok) {
+            alert("Error");
+        }
+        return response.json();
+    })
+    .then(data => {
+        autos_usuario = data;
+        cantidad_autos = data.length;
+        auto = autos_usuario[0];
+        init();
+        cambiar_nombre_auto();
+    });
 
 function init() {
     const canvas = document.getElementById('car-canvas');
     const container = document.getElementById('car-container');
-    
+
     canvas.style.width = '100%';
     canvas.style.height = '100%';
 
@@ -70,7 +73,6 @@ function init() {
     // Manejar cambio de modelo con las flechas
     document.querySelector('.left-arrow').addEventListener('click', () => changeCarModel('left'));
     document.querySelector('.right-arrow').addEventListener('click', () => changeCarModel('right'));
-    
 }
 
 function loadCarModel(modelPath, cameraPosition, controlsTarget) {
@@ -117,7 +119,7 @@ function changeCarColor(color) {
     }
 }
 
-function changeCarModel(direction) { 
+function changeCarModel(direction) {
     if (direction === 'left') {
         currentModelIndex = (currentModelIndex - 1 + cantidad_autos) % cantidad_autos;
     } else if (direction === 'right') {
@@ -134,7 +136,13 @@ function changeCarModel(direction) {
     setTimeout(() => {
         changeCarColor(auto.color);
     }, 50)
-    
+
+    cambiar_nombre_auto();
+}
+
+function cambiar_nombre_auto() {
+    const recuadro_nombre_auto = document.getElementById('car-name');
+    recuadro_nombre_auto.textContent = auto.nombre;
 }
 
 function animate() {
@@ -162,4 +170,3 @@ function resetCameraAndControls(position, target) {
     controls.target.copy(target);
     controls.update();
 }
-

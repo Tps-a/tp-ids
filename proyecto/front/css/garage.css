@@ -15,18 +15,27 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 h2,a {
   display: flex;
   justify-content: center;
+  color: gold;
+}
+
+h3{
+  display: flex;
+  justify-content: center;
+  color: gold;
+  border: solid 1px gold;
+  background-color: black;
 }
 
 section,canvas {
   height: 100%;
   width: 100%;
 }
+
 .arrow-container {
   position: absolute;
   top: 50%;
@@ -35,9 +44,11 @@ section,canvas {
   transform: translateY(-50%);
   display: flex;
   justify-content: space-between;
+  pointer-events: none;
 }
 
 .arrow-btn {
+  pointer-events: auto;
   font-size: 40px;
   background-color: rgba(255, 255, 255, 0.7);
   border: none;

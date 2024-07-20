@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__, template_folder='../front/HTML', static_folder='../static')
 port = 5000
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://jero:hola@localhost/tpintro' ## crear base de datos
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://leannnica:papu@localhost/boverfc' ## crear base de datos
 
 
 @app.route('/', defaults = {"n_usuario" : None})
@@ -59,9 +59,10 @@ def login():
         return jsonify({'error': 'Credenciales inválidas'})
     return jsonify({'usuario': usuario.n_usuario})
 
-@app.route('/garage')
-def garage():
-    return render_template('garage.html')
+@app.route('/garage/<n_usuario>')
+def garage(n_usuario):
+    return render_template('garage.html', n_usuario = n_usuario)
+    
 
 
 """

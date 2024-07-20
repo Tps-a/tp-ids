@@ -176,18 +176,29 @@ function resetCameraAndControls(position, target) {
 
 function borrar_auto(){
     fetch(window.location.href + "/" +auto.nombre,
-        {method: "DELETE" , 
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify( {
-            nombre: auto.nombre
-            } )
-        })
+        {method: "DELETE"})
         .then(response => response.json())
         .then(data => {
-            if (data.error){
-                alert(data.error);
-            }else{
+            if (data.mensaje){
                 alert(data.mensaje);
+                let nuevo_tamaño = cantidad_autos - 1;
+                if(nuevo_tamaño != 0) {
+                    let aux = new Array(nuevo_tamaño);
+                    let j = 0;
+                    for(let i = 0; i < cantidad_autos; i++){
+                        if(!i == currentModelIndex){
+                            aux[j] = autos_usuario[i];
+                            j++;
+                        }
+                    }
+                    autos_usuario = aux;
+                    cantidad_autos = nuevo_tamaño;
+                    currentModelIndex = (currentModelIndex) % cantidad_autos;
+                    changeCarModel("iniciar");
+                }else{
+                    location.reload();
+                }
+
             }
         })
 }

@@ -67,9 +67,6 @@ def login():
 def garage(n_usuario):
     return render_template('garage.html', n_usuario = n_usuario)
     
-
-
-
 @app.route('/garage/<n_usuario>/autos')
 def autos_usuario(n_usuario): 
     try:   
@@ -88,29 +85,12 @@ def autos_usuario(n_usuario):
         return jsonify({"error": error})     
 
 
-"""
-@app.route('/autos/<int:auto_id>', methods=['PUT'])
-def actualizar_auto(auto_id):
-    auto = Auto.query.get_or_404(auto_id)
-    data = request.json
-    # Asumiendo que Marca es una relación y necesitamos actualizarla por separado
-    if 'marca' in data:
-        auto.marca.nombre = data['marca']
-        db.session.add(auto.marca)  # Asegurarse de que la marca también se actualiza si es necesario
-    if 'color' in data:
-        auto.color = data['color']
-    if 'motor' in data:
-        auto.motor = data['motor']
+@app.route('/garage/<n_usuario>/<n_auto>', methods = ["DELETE"]) 
+def eliminar_auto(n_usuario, n_auto): 
+    auto_a_borrar = Auto.query.filter_by(n_dueño = n_usuario, nombre = n_auto).first() 
+    db.session.delete(auto_a_borrar)
     db.session.commit()
-    return jsonify({'mensaje': 'Auto actualizado exitosamente'})
-
-@app.route('/autos/<int:auto_id>', methods=['DELETE'])
-def eliminar_auto(auto_id):
-    auto = Auto.query.get_or_404(auto_id)
-    db.session.delete(auto)
-    db.session.commit()
-    return jsonify({'mensaje': 'Auto eliminado exitosamente'})
-"""
+    return jsonify({"mensaje" : "Auto eliminado"})
 
 @app.route('/css/<path:filename>')
 def enviar_css(filename):
@@ -126,10 +106,6 @@ def enviar_js(filename):
 def enviar_modelos(filename):
     models_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'front', 'modelos'))
     return send_from_directory(models_dir, filename)
-
-#investigar esto si estas viendo este comentario
-# Asegúrate de tener una función initialize_app() definida en algún lugar
-# initialize_app()
 
 if __name__ == '__main__':
     db.init_app(app)

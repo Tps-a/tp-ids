@@ -62,7 +62,9 @@
         <button type="submit">Guardar Diseño</button>
     </form>
     <div class="button-container">
+      {% if n_usuario %}
         <a href="{{ url_for('garage', n_usuario=n_usuario) }}" class="btn-garage">Ir al Garaje</a>
+      {% endif %}
     </div>
 </section>
 

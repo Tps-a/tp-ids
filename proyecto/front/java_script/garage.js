@@ -26,6 +26,7 @@ fetch(window.location.href + "/autos")
             auto = autos_usuario[0];
             init();
         }else{
+            cambiar_nombre_auto();
             alert ("No tiene ningun auto")
         }
     });
@@ -37,45 +38,35 @@ function init() {
     canvas.style.width = '100%';
     canvas.style.height = '100%';
 
-    // Crear la escena
     scene = new THREE.Scene();
 
-    // Crear la cámara
     camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
 
-    // Crear el renderizador
     renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
 
-    // Establecer el color de fondo del renderizador como transparente
     renderer.setClearColor(0x000000, 0);
 
-    // Crear los controles de órbita
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.25;
     controls.enableZoom = false;
 
-    // Ajustar el tamaño del renderizador cuando la ventana cambia de tamaño
     window.addEventListener('resize', () => {
         renderer.setSize(container.clientWidth, container.clientHeight);
         camera.aspect = container.clientWidth / container.clientHeight;
         camera.updateProjectionMatrix();
     });
 
-    // Añadir luz ambiental
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    // Añadir luz direccional
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
-    // Cargar el modelo 3D inicial del auto
     changeCarModel("iniciar");
 
-    // Manejar cambio de modelo con las flechas
     document.querySelector('.left-arrow').addEventListener('click', () => changeCarModel('left'));
     document.querySelector('.right-arrow').addEventListener('click', () => changeCarModel('right'));
 }
@@ -103,7 +94,6 @@ function changeCarColor(color) {
     if (carModel) {
         carModel.traverse((child) => {
             if (child.isMesh) {
-                // Cambiar el color solo si el nombre coincide con la parte de la carrocería
                 // COLOR 1ER AUTO
                 if (child.name.includes('Chassis_Chassis_0')) {
                     child.material.color.set(color);
@@ -125,6 +115,10 @@ function changeCarColor(color) {
 }
 
 function changeCarModel(direction) {
+    if (cantidad_autos === 0) {
+        cambiar_nombre_auto();
+        return;
+    }
     if (direction === 'left') {
         currentModelIndex = (currentModelIndex - 1 + cantidad_autos) % cantidad_autos;
     } else if (direction === 'right') {
@@ -147,7 +141,11 @@ function changeCarModel(direction) {
 
 function cambiar_nombre_auto() {
     const recuadro_nombre_auto = document.getElementById('car-name');
-    recuadro_nombre_auto.textContent = auto.nombre;
+    if (cantidad_autos === 0) {
+        recuadro_nombre_auto.textContent = "El garaje se encuentra vacío.";
+    } else {
+        recuadro_nombre_auto.textContent = auto.nombre;
+    }
 }
 
 function animate() {
@@ -197,7 +195,7 @@ function borrar_auto(){
                         autos_usuario = aux;
                         cantidad_autos = nuevo_tamaño;
                         currentModelIndex = (currentModelIndex) % cantidad_autos;
-                        changeCarModel("iniciar");
+                        changeCarModel('left');
                     }else{
                         location.reload();
                     }

@@ -10,55 +10,43 @@ function init() {
     const canvas = document.getElementById('car-canvas');
     const container = document.getElementById('car-container');
 
-    // Ajustar el tamaño del canvas al contenedor
     canvas.style.width = '100%';
     canvas.style.height = '100%';
 
-    // Crear la escena
     scene = new THREE.Scene();
 
-    // Crear la cámara
     camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
 
-    // Crear el renderizador
     renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
 
-    // Establecer el color de fondo del canvas
     renderer.setClearColor(0xffffff);
 
-    // Crear los controles de órbita
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.25;
     controls.enableZoom = true;
 
-    // Ajustar el tamaño del renderizador cuando la ventana cambia de tamaño
     window.addEventListener('resize', () => {
         renderer.setSize(container.clientWidth, container.clientHeight);
         camera.aspect = container.clientWidth / container.clientHeight;
         camera.updateProjectionMatrix();
     });
 
-    // Añadir luz ambiental
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    // Añadir luz direccional
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
-    // Cargar el modelo 3D inicial del auto
     loadCarModel(modelPaths[currentModelIndex], new THREE.Vector3(0.5, -2, 1), new THREE.Vector3(0, -2.3, 0));
 
-    // Manejar cambio de color
     document.getElementById('color-picker').addEventListener('input', (event) => {
         const selectedColor = event.target.value;
         changeCarColor(selectedColor);
     });
 
-    // Manejar cambio de modelo con las flechas
     document.querySelector('.left-arrow').addEventListener('click', () => changeCarModel('left'));
     document.querySelector('.right-arrow').addEventListener('click', () => changeCarModel('right'));
 }
@@ -86,7 +74,6 @@ function changeCarColor(color) {
     if (carModel) {
         carModel.traverse((child) => {
             if (child.isMesh) {
-                // Cambiar el color solo si el nombre coincide con la parte de la carrocería
                 // COLOR 1ER AUTO
                 if (child.name.includes('Chassis_Chassis_0')) {
                     child.material.color.set(color);

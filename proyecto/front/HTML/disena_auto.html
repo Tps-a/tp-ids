@@ -55,13 +55,17 @@
           </div>
       </section>
 
-        <section id="guardar-auto">
-            <h2>Guardar diseño de auto</h2>
-            <form id="guardarAutoForm" onsubmit = "guardar_auto(event)">
-                <input type="text" id="nombre" name="nombre" placeholder="Nombre del diseño" required>
-                <button type="submit" >Guardar Diseño</button>
-            </form>
-        </section>
+      <section id="guardar-auto">
+    <h2>Guardar diseño de auto</h2>
+    <form id="guardarAutoForm" onsubmit="guardar_auto(event)">
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre del diseño" required>
+        <button type="submit">Guardar Diseño</button>
+    </form>
+    <div class="button-container">
+        <a href="{{ url_for('garage', n_usuario=n_usuario) }}" class="btn-garage">Ir al Garaje</a>
+    </div>
+</section>
+
         <div class="spacer"></div>
     </main>
 

@@ -39,42 +39,42 @@ main {
 }
 
 #login {
-    text-align: center; /* Centrar texto */
+    text-align: center;
 }
 
 label {
-    display: block; /* Hacer que las etiquetas ocupen toda la línea */
-    margin: 10px 0 5px; /* Espaciado */
-    font-weight: bold; /* Negrita para mayor énfasis */
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold; 
 }
 
 input[type="text"], input[type="password"] {
-    width: 100%; /* Ancho completo */
-    padding: 12px; /* Espaciado interno */
-    margin: 8px 0; /* Margen vertical */
-    border: 1px solid #ccc; /* Borde suave */
-    border-radius: 5px; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: border-color 0.3s ease; /* Transición suave */
+    width: 100%;
+    padding: 12px; 
+    margin: 8px 0; 
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
 }
 
 input[type="text"]:focus, input[type="password"]:focus {
-    border-color: #007BFF; /* Color de borde al enfocar */
+    border-color: #007BFF;
 }
 
 .btn-login {
-    background-color: #007BFF; /* Color de fondo */
-    color: white; /* Color del texto */
-    padding: 12px 20px; /* Espaciado interno */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambiar cursor al pasar */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-login:hover {
-    background-color: #0056b3; /* Color más oscuro al pasar */
-    transform: scale(1.05); /* Efecto de aumento */
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 .nav_botones {
@@ -91,7 +91,7 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 a {
-    display: inline-block; /* Para aplicar padding y efectos */
+    display: inline-block;
     padding: 10px 20px;
     border: 2px solid transparent;
     border-radius: 5px;
@@ -103,8 +103,8 @@ a {
 
 a:hover {
     color: #fff;
-    background-color: #007BFF; /* Color de fondo al pasar el mouse */
-    border-color: #0056b3; /* Color del borde al pasar el mouse */
+    background-color: #007BFF;
+    border-color: #0056b3;
 }
 
 #footer_marca {
@@ -137,4 +137,3 @@ a:hover {
 #footer_marca a:hover {
     color: #ccc;
 }
-

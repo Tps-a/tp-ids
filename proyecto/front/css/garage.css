@@ -4,7 +4,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  overflow: hidden; /* Evita que aparezca el scroll */
+  overflow: hidden;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -17,7 +17,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100% - 100px); /* Ajusta la altura para el footer */
+  height: calc(100% - 100px);
 }
 
 h2 {
@@ -25,10 +25,8 @@ h2 {
   justify-content: center;
   color: rgb(42, 41, 53);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  animation: glow 1.5s infinite alternate; /* Efecto de brillo */
+  animation: glow 1.5s infinite alternate; 
 }
-
-
 
 h3 {
   display: flex;
@@ -36,16 +34,16 @@ h3 {
   color: rgb(132, 119, 119);
   padding: 15px;
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.758); /* Fondo oscuro y transparente */
-  border: 2px solid rgba(0, 0, 0, 0.8); /* Borde dorado */
-  box-shadow: 0 0 15px rgba(250, 250, 250, 0.5); /* Sombra dorada */
-  backdrop-filter: blur(5px); /* Efecto de desenfoque de fondo */
+  background: rgba(0, 0, 0, 0.758);
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 15px rgba(250, 250, 250, 0.5);
+  backdrop-filter: blur(5px);
   text-shadow: 1px 1px 5px rgba(189, 166, 166, 0.7);
   font-size: 1.5em; 
-  transition: transform 0.3s ease; /* Transición para el efecto de hover */
+  transition: transform 0.3s ease;
 }
 h3:hover {
-  transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
+  transform: scale(1.05);
 }
 
 section, canvas {
@@ -62,7 +60,7 @@ section, canvas {
   display: flex;
   justify-content: space-between;
   pointer-events: none;
-  animation: float 3s ease-in-out infinite; /* Efecto de flotación */
+  animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -85,12 +83,12 @@ section, canvas {
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.3s ease; 
   border-radius: 10px; 
-  text-shadow: 1px 1px 3px rgba(255, 253, 253, 0.5); /* Sombra de texto */
+  text-shadow: 1px 1px 3px rgba(255, 253, 253, 0.5);
 }
 
 .arrow-btn:hover {
-  transform: scale(1.1); /* Efecto de aumento al pasar el ratón */
-  box-shadow: 0 8px 20px rgba(246, 246, 246, 0.7); /* Sombra más pronunciada al pasar el ratón */
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(246, 246, 246, 0.7);
 }
 
 #btn_eliminar {
@@ -101,26 +99,26 @@ section, canvas {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 20px; /* Aumentado para mejor visibilidad */
+  font-size: 20px;
   margin: 4px 2px;
   cursor: pointer;
   position: fixed;
   bottom: 20px; 
-  left: 20px; /* Cambiado a la izquierda */
-  border-radius: 10px; /* Bordes más redondeados */
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transiciones suaves */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
-  font-weight: bold; /* Texto en negrita */
+  left: 20px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
 }
 
 #btn_eliminar:hover {
-  background-color: #d32f2f; /* Color más oscuro al pasar el ratón */
-  transform: scale(1.05); /* Aumento al pasar el ratón */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Sombra más pronunciada al pasar el ratón */
+  background-color: #d32f2f;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
 }
 
 #btn_eliminar:active {
-  transform: scale(0.95); /* Efecto de compresión al hacer clic */
+  transform: scale(0.95);
 }
 
 #footer_marca {
@@ -153,23 +151,23 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
-  z-index: -1; /* Send to back */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
 
 #car-container {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 10px;
 }
 
 @media (max-width: 768px) {
   #btn_eliminar {
-      font-size: 16px; /* Smaller font size on mobile */
-      padding: 10px 20px; /* Adjust padding */
+      font-size: 16px;
+      padding: 10px 20px;
   }
 
   .arrow-btn {
-      font-size: 30px; /* Smaller arrow buttons */
+      font-size: 30px;
   }
 }
 
@@ -201,7 +199,7 @@ body::before {
 }
 
 .animated {
-  animation: pulse 0.5s ease-in-out infinite; /* Cambiamos a 'infinite' para que sea continuo */
+  animation: pulse 0.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -216,7 +214,7 @@ body::before {
   }
 }
 .animated {
-  animation: pulse 0.5s ease-in-out infinite; /* Cambiamos a 'infinite' para que sea continuo */
+  animation: pulse 0.5s ease-in-out infinite;
 }
 
 @keyframes pulse {

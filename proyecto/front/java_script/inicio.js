@@ -55,6 +55,8 @@ function login(event) {
     .then(data => {
         if(data.usuario){
             window.location.href = `/${data.usuario}`; 
+        } else{
+            alert("Error: usuario o contraseña incorrectos!")
         }
         
     })

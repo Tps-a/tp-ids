@@ -175,7 +175,7 @@ function resetCameraAndControls(position, target) {
 }
 
 function borrar_auto(){
-    if(cantidad_autos !=0){
+    if(cantidad_autos != 0){
         fetch(window.location.href + "/" +auto.nombre,
             {method: "DELETE"})
             .then(response => response.json())
@@ -233,33 +233,37 @@ document.getElementById('btn-change-name').addEventListener('click', function() 
 
 
 function actualizarNombreAuto() {
-    const nombreActual = auto.nombre; 
-    const nuevoNombre = document.getElementById('new-car-name').value;
+    if(cantidad_autos != 0){
+        const nombreActual = auto.nombre; 
+        const nuevoNombre = document.getElementById('new-car-name').value;
 
-    if (!nuevoNombre) {
-        alert('Por favor, ingrese un nuevo nombre.');
-    }else{ 
-        fetch(window.location.href + "/actualizar/" + nombreActual, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ nuevo_nombre: nuevoNombre })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                alert(data.error);
-            } else {
-                alert(data.mensaje);
-                // Oculta el formulario y muestra el botón de cambiar nombre nuevamente
-                document.getElementById('change-name-form').style.display = 'none';
-                document.getElementById('btn-change-name').style.display = 'block';
-                auto.nombre = nuevoNombre;
-                changeCarModel("actual");
-            }
-        });
-    }
+        if (!nuevoNombre) {
+            alert('Por favor, ingrese un nuevo nombre.');
+        }else{ 
+            fetch(window.location.href + "/actualizar/" + nombreActual, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nuevo_nombre: nuevoNombre })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    alert(data.mensaje);
+                    // Oculta el formulario y muestra el botón de cambiar nombre nuevamente
+                    document.getElementById('change-name-form').style.display = 'none';
+                    document.getElementById('btn-change-name').style.display = 'block';
+                    auto.nombre = nuevoNombre;
+                    changeCarModel("actual");
+                }
+            });
+        }
+    }else{
+        alert("No tiene ningun auto para modificar")
+    }    
 }
 
 function cancelarCambioNombre() {

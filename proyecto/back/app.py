@@ -12,6 +12,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://jero:hola@localhost/tpintr
 def home(n_usuario):
     if not n_usuario:
         return render_template('main.html')
+    if not Usuario.query.get(n_usuario):
+        return render_template('main.html')
     return render_template('main.html', n_usuario = n_usuario)
 
 
@@ -20,11 +22,16 @@ def home(n_usuario):
 def disenar(n_usuario):
     if not n_usuario:
         return render_template('disena_auto.html')
+    if not Usuario.query.get(n_usuario):
+        return render_template('disena_auto.html')
     return render_template('disena_auto.html', n_usuario = n_usuario)
 
 
 @app.route('/disenar/<n_usuario>/guardar-auto', methods=['POST']) 
 def guardar_auto(n_usuario):
+    if not Usuario.query.get(n_usuario):
+        return jsonify ({"error" : "Usuario no registrado" })
+    
     data = request.get_json()
     auto_nombre_repetido = Auto.query.filter_by(n_dueño = n_usuario, nombre = data.get("nombre")).first()
     if auto_nombre_repetido:
@@ -43,7 +50,7 @@ def register_page():
 @app.route('/register_page/registrarse', methods=['POST']) 
 def register():
     data = request.get_json()  
-    usuario_existente = Usuario.query.filter_by(n_usuario = data.get("usuario")).first()
+    usuario_existente = Usuario.query.get(data.get("usuario"))
     if usuario_existente:
         return jsonify({'error': 'Este usuario ya existe!'})
     usuario_nuevo = Usuario(n_usuario = data.get("usuario"), password = data.get("password"))
@@ -95,12 +102,16 @@ def eliminar_cuenta(n_usuario):
 
 @app.route('/garage/<n_usuario>')
 def garage(n_usuario):
-    return render_template('garage.html', n_usuario = n_usuario)
+    if Usuario.query.get(n_usuario):
+        return render_template('garage.html', n_usuario = n_usuario)
+    else:
+        render_template('inicio.html')
     
 @app.route('/garage/<n_usuario>/autos')
-def autos_usuario(n_usuario): 
-    try:   
-        garage_usuario = db.session.get(Usuario, n_usuario).garage_usuario
+def autos_usuario(n_usuario):
+    usuario = Usuario.query.get(n_usuario)
+    if usuario:
+        garage_usuario = usuario.garage_usuario
         garage_prosesado = []
         for auto in garage_usuario:
             garage_prosesado.append({
@@ -108,19 +119,23 @@ def autos_usuario(n_usuario):
                 "nombre" : auto.nombre,
                 "modelo" : auto.modelo
             })
-        
         return jsonify(garage_prosesado)
-    
-    except Exception as error:
-        return jsonify({"error": error})     
+    else:
+        return jsonify({"error": "Usuario no registrado"})
+        
 
 
 @app.route('/garage/<n_usuario>/<n_auto>', methods = ["DELETE"]) 
-def eliminar_auto(n_usuario, n_auto): 
+def eliminar_auto(n_usuario, n_auto):
+    if not Usuario.query.get(n_usuario):
+        return jsonify({"error" : "Usuario no registrado"})    
     auto_a_borrar = Auto.query.filter_by(n_dueño = n_usuario, nombre = n_auto).first() 
-    db.session.delete(auto_a_borrar)
-    db.session.commit()
-    return jsonify({"mensaje" : "Auto eliminado"})
+    if  not auto_a_borrar:
+        return jsonify({"error" : "Auto no existe"}) 
+    else:
+        db.session.delete(auto_a_borrar)
+        db.session.commit()
+        return jsonify({"mensaje" : "Auto eliminado"})       
 
 @app.route('/css/<path:filename>')
 def enviar_css(filename):

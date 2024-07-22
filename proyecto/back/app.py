@@ -58,10 +58,38 @@ def login_page():
 @app.route('/login_page/login', methods = ['POST'])
 def login():
     data = request.get_json()
-    usuario = Usuario.query.filter_by(n_usuario=data.get("usuario"), password=data.get("password")).first()
+    usuario = Usuario.query.filter_by(n_usuario = data.get("usuario"), password = data.get("password")).first()
     if not usuario:
         return jsonify({'error': 'Credenciales inválidas'})
     return jsonify({'usuario': usuario.n_usuario})
+
+@app.route('/olvido_contraseña')
+def olvido_page():
+    return render_template('olvido_c.html')
+
+@app.route('/olvido_contraseña/cambiar_contraseña', methods = ["PUT"])
+def cambiar_contraseña():
+    data = request.get_json()
+    usuario = Usuario.query.get(data.get("usuario"))
+    if not usuario:
+        return jsonify({'error': 'Usuario no registrado'})
+    else:
+        usuario.password = data.get("password")
+        db.session.commit()
+        return jsonify({'mensaje': 'password actualizada'})  
+
+@app.route('/<n_usuario>/eliminar_cuenta', methods = ["DELETE"])
+def eliminar_cuenta(n_usuario):
+    usuario = Usuario.query.get(n_usuario)
+    if usuario:
+        if usuario.garage_usuario:
+            for auto in usuario.garage_usuario:
+                db.session.delete(auto)
+        db.session.delete(usuario)
+        db.session.commit()
+        return jsonify ({"mensaje" : "Cuenta eliminada"})
+    else:
+        return jsonify ({"error" : "Usuario no registrado"}) 
 
 @app.route('/garage/<n_usuario>')
 def garage(n_usuario):

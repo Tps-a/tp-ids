@@ -17,3 +17,35 @@ document.addEventListener('mousemove', (event) => {
         document.getElementById('sidebarIndicator').style.display = 'block';
     }
 });
+
+function eliminar_cuenta(event) {
+    event.preventDefault();
+    let confirmar = confirm("¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.");
+
+    if (confirmar) {
+        let usuario = document.getElementById("btn_eliminar").getAttribute("data-usuario");
+
+        fetch(`/${usuario}/eliminar_cuenta`, {
+            method: "DELETE",
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(response => {
+            return response.json().then(data => {
+                if (!response.ok) {
+                    alert(data.error);
+                    throw new Error(data.error);
+                }
+                return data;
+            });
+        })
+        .then(data => {
+            alert(data.mensaje);
+            window.location.href = '/login_page';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    } else {
+        console.log("Eliminación de cuenta cancelada.");
+    }
+}

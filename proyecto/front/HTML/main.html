@@ -54,13 +54,12 @@
                 {% if n_usuario %}
                     <li><a href="{{ url_for('garage', n_usuario = n_usuario) }}">Garaje.</a></li>
                     <li><a href="{{ url_for('home') }}">Cerrar sesión.</a></li>
+                    <button id="btn_eliminar" onclick="eliminar_cuenta(event)" data-usuario="{{ n_usuario }}">Eliminar Cuenta</button>
                 {% else %}     
                     <a href="{{ url_for('disenar')}}" class="btn-diseña">Diseña tu Auto</a>
                 {% endif %}
             </ul>
-            {% if n_usuario %}
-            <button id="btn_eliminar" onclick="eliminar_cuenta(event)" data-usuario="{{ n_usuario }}">Eliminar Cuenta</button>
-            {% endif %}
+            
         </aside>
 
     </main>

@@ -134,7 +134,14 @@
     color: #999;
     margin-bottom: 20px;
 }
-   
+#btn_eliminar {
+    background: none;
+    border: none;
+    animation: colorChange 5s infinite;
+    font: inherit; 
+    cursor: pointer;
+    padding: 0;
+}  
  /*   seccion  texto del medio*/
  #centroinfo {
     display: flex;

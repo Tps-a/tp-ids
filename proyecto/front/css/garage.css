@@ -247,30 +247,58 @@ section, canvas {
 }
 
 #update-car-name {
-  position: relative; /* Contenedor para manejar la posición relativa del formulario */
+  position: relative; 
 }
 
 .change-name-container {
-  position: relative; /* Para posicionar el formulario respecto al botón */
-  display: inline-block; /* Mantiene el contenedor tan ancho como el contenido */
+  position: relative; 
+  display: inline-block; 
 }
 
 
-
 #change-name-form {
-  position: absolute; /* Posiciona el formulario en relación al contenedor */
-  top: 100%; /* Coloca el formulario justo debajo del botón */
-  left: 0; /* Alinea el formulario con el botón */
-  margin-top: 10px; /* Espacio entre el botón y el formulario */
-  display: none; /* Oculto por defecto */
-  background: rgba(0, 0, 0, 0.8); /* Fondo para el formulario */
-  padding: 10px; /* Espacio interno del formulario */
-  border-radius: 5px; /* Bordes redondeados del formulario */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para el formulario */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  display: none;
+  background: rgba(0, 0, 0, 0.9); 
+  padding: 20px; 
+  border-radius: 8px; 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); 
+  width: 300px; 
+  z-index: 1000; 
 }
 
 #change-name-form input,
 #change-name-form button {
-  margin-bottom: 5px; /* Espacio entre los elementos del formulario */
-  width: 100%; /* Hacer que los elementos ocupen todo el ancho del formulario */
+  margin-bottom: 10px; 
+  width: calc(100% - 20px);
+  padding: 10px; 
+  border: 1px solid #555; 
+  border-radius: 4px; 
+  background: #222; 
+  color: #fff; 
+}
+
+#change-name-form input::placeholder {
+  color: #aaa; 
+}
+
+#change-name-form button {
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#change-name-form button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+#change-name-form button:active {
+  transform: scale(0.95);
 }

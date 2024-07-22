@@ -223,17 +223,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById('btn-change-name').addEventListener('click', function() {
     var form = document.getElementById('change-name-form');
-    // Verifica si el formulario está visible o no
+   
     if (form.style.display === 'none' || form.style.display === '') {
-        form.style.display = 'block'; // Muestra el formulario
+        form.style.display = 'block'; 
     } else {
-        form.style.display = 'none'; // Oculta el formulario
+        form.style.display = 'none'; 
     }
 });
 
 
 function actualizarNombreAuto() {
-    const nombreActual = auto.nombre; // Suponiendo que `auto` es la variable que contiene el auto actual
+    const nombreActual = auto.nombre; 
     const nuevoNombre = document.getElementById('new-car-name').value;
 
     if (!nuevoNombre) {
@@ -254,11 +254,10 @@ function actualizarNombreAuto() {
             alert(data.error);
         } else {
             alert(data.mensaje);
-            // Oculta el formulario y muestra el botón de cambiar nombre nuevamente
             document.getElementById('change-name-form').style.display = 'none';
             document.getElementById('btn-change-name').style.display = 'block';
             
-            // Actualiza la vista si es necesario
+            
             fetch(window.location.href + "/autos")
                 .then(response => response.json())
                 .then(data => {
@@ -267,7 +266,7 @@ function actualizarNombreAuto() {
                     } else {
                         autos_usuario = data;
                         cantidad_autos = data.length;
-                        auto = autos_usuario[currentModelIndex]; // Actualiza el auto actual
+                        auto = autos_usuario[currentModelIndex]; 
                         changeCarModel('left');
                     }
                 });
@@ -276,7 +275,6 @@ function actualizarNombreAuto() {
 }
 
 function cancelarCambioNombre() {
-    // Limpia el campo de entrada y oculta el formulario
     document.getElementById('new-car-name').value = '';
     document.getElementById('change-name-form').style.display = 'none';
     document.getElementById('btn-change-name').style.display = 'block';

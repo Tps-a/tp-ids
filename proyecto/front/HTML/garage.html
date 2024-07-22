@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Garaje</title>
     <link rel="stylesheet" href="../css/garage.css">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -15,11 +16,21 @@
             <h2>Garaje de {{n_usuario }}</h2>
             <h3 id="car-name"></h3>
         </section>
-        <div class="back-link-container">
-            <a href="javascript:history.back()" class="navbar-link">
-                <i class="fas fa-arrow-left"></i>
-                Volver a la página anterior
-            </a>
+        <div class="header-content">
+            <div class="back-link-container">
+                <a href="javascript:history.back()" class="navbar-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Volver a la página anterior
+                </a>
+            </div>
+            <div class="change-name-container">
+                <button id="btn-change-name">Cambiar nombre del modelo</button>
+                <div id="change-name-form">
+                    <input type="text" id="new-car-name" placeholder="Nuevo nombre del modelo del auto">
+                    <button onclick="actualizarNombreAuto()">Actualizar Nombre</button>
+                    <button onclick="cancelarCambioNombre()">Cancelar</button>
+                </div>
+            </div>
         </div>
     </header>
     <main>
@@ -33,8 +44,7 @@
             </div>
         </section>
         <button id="btn_eliminar" onclick="borrar_auto()">Eliminar auto</button>
-    </main>    
-    
+    </main>
     <script src="{{ url_for('enviar_js', filename='garage.js') }}"></script>
 </body>
 </html>

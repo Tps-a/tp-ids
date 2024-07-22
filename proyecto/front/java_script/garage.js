@@ -220,3 +220,64 @@ document.addEventListener('DOMContentLoaded', function() {
         this.classList.remove('animated');
     });
 });
+
+document.getElementById('btn-change-name').addEventListener('click', function() {
+    var form = document.getElementById('change-name-form');
+    // Verifica si el formulario está visible o no
+    if (form.style.display === 'none' || form.style.display === '') {
+        form.style.display = 'block'; // Muestra el formulario
+    } else {
+        form.style.display = 'none'; // Oculta el formulario
+    }
+});
+
+
+function actualizarNombreAuto() {
+    const nombreActual = auto.nombre; // Suponiendo que `auto` es la variable que contiene el auto actual
+    const nuevoNombre = document.getElementById('new-car-name').value;
+
+    if (!nuevoNombre) {
+        alert('Por favor, ingrese un nuevo nombre.');
+        return;
+    }
+
+    fetch(window.location.href + "/autos/" + nombreActual, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nuevo_nombre: nuevoNombre })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            alert(data.mensaje);
+            // Oculta el formulario y muestra el botón de cambiar nombre nuevamente
+            document.getElementById('change-name-form').style.display = 'none';
+            document.getElementById('btn-change-name').style.display = 'block';
+            
+            // Actualiza la vista si es necesario
+            fetch(window.location.href + "/autos")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        autos_usuario = data;
+                        cantidad_autos = data.length;
+                        auto = autos_usuario[currentModelIndex]; // Actualiza el auto actual
+                        changeCarModel('left');
+                    }
+                });
+        }
+    });
+}
+
+function cancelarCambioNombre() {
+    // Limpia el campo de entrada y oculta el formulario
+    document.getElementById('new-car-name').value = '';
+    document.getElementById('change-name-form').style.display = 'none';
+    document.getElementById('btn-change-name').style.display = 'block';
+}

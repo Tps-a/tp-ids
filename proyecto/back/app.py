@@ -63,7 +63,7 @@ def login():
         return jsonify({'error': 'Credenciales inválidas'})
     return jsonify({'usuario': usuario.n_usuario})
 
-@app.route('/cambio_contra')
+@app.route('/cambio_contraseña')
 def cambio_page():
     return render_template('cambiar_c.html')
 
@@ -73,10 +73,12 @@ def cambiar_contraseña():
     usuario = Usuario.query.get(data.get("usuario"))
     if not usuario:
         return jsonify({'error': 'Usuario no registrado'})
+    elif usuario.password != data.get("password"):
+        return jsonify({'error': 'Contraseña erronea'})
     else:
-        usuario.password = data.get("password")
+        usuario.password = data.get("new_password")
         db.session.commit()
-        return jsonify({'mensaje': 'password actualizada'})  
+        return jsonify({'mensaje': 'Contraseña actualizada'})  
 
 @app.route('/<n_usuario>/eliminar_cuenta', methods = ["DELETE"])
 def eliminar_cuenta(n_usuario):

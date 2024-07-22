@@ -58,6 +58,9 @@
                     <a href="{{ url_for('disenar')}}" class="btn-diseña">Diseña tu Auto</a>
                 {% endif %}
             </ul>
+            {% if n_usuario %}
+            <button id="btn_eliminar" onclick="eliminar_cuenta(event)" data-usuario="{{ n_usuario }}">Eliminar Cuenta</button>
+            {% endif %}
         </aside>
 
     </main>

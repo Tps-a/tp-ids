@@ -23,7 +23,7 @@ Diseño de Autos: Después de iniciar sesión, los usuarios pueden diseñar sus 
 En el garaje, se muestra:
 
 El nombre de inicio de sesión.
-El nombre del modelo del auto.
+El nombre del diseño del auto.
 El modelo del auto seleccionado con su respectivo color.
 Un botón para eliminar cualquier creación.
 Un boton para volver a la pagina anterior.
@@ -54,11 +54,6 @@ Instala las dependencias necesarias:
 pip install -r requirements.txt
 Configura la base de datos en config.py con tus credenciales de PostgreSQL.
 
-Realiza las migraciones necesarias para configurar la base de datos:
-*flask db init
-*flask db migrate
-*flask db upgrade
-
 Corre el servidor: python3 app.py
 
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -68,5 +63,6 @@ Tecnologías Utilizadas:
 Flask: Para el backend y la gestión de rutas.
 SQLAlchemy: Para la gestión de la base de datos.
 HTML/CSS/JavaScript: Para el frontend y la interacción con el usuario.
+Postgre: Para gestionar la base de datos.
 
 -----------------------------------------------------------------------------------------------------------------------------------------

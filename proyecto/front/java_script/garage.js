@@ -239,7 +239,7 @@ function actualizarNombreAuto() {
     if (!nuevoNombre) {
         alert('Por favor, ingrese un nuevo nombre.');
     }else{ 
-        fetch(window.location.href + "/autos/" + nombreActual, {
+        fetch(window.location.href + "/actualizar/" + nombreActual, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -256,6 +256,7 @@ function actualizarNombreAuto() {
                 document.getElementById('change-name-form').style.display = 'none';
                 document.getElementById('btn-change-name').style.display = 'block';
                 auto.nombre = nuevoNombre;
+                changeCarModel("actual");
             }
         });
     }

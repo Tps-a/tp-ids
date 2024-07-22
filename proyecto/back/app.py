@@ -63,11 +63,11 @@ def login():
         return jsonify({'error': 'Credenciales inválidas'})
     return jsonify({'usuario': usuario.n_usuario})
 
-@app.route('/olvido_contraseña')
-def olvido_page():
-    return render_template('olvido_c.html')
+@app.route('/cambio_contra')
+def cambio_page():
+    return render_template('cambiar_c.html')
 
-@app.route('/olvido_contraseña/cambiar_contraseña', methods = ["PUT"])
+@app.route('/cambio_contraseña/cambiar_contraseña', methods = ["PUT"])
 def cambiar_contraseña():
     data = request.get_json()
     usuario = Usuario.query.get(data.get("usuario"))

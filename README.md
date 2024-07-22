@@ -9,7 +9,8 @@ El proyecto se compone de varias páginas HTML que permiten a los usuarios inter
 Es obligatorio que los usuarios inicien sesión para poder crear y guardar un diseño de auto. Si no han iniciado sesión, serán redirigidos a la página de inicio de sesión.**
 
 Página de Bienvenida: Es la página principal de la aplicación. Los usuarios pueden iniciar sesión desde una barra lateral desplegable ubicada en la derecha de la pantalla.
-![alt text](image.png)
+![image](https://github.com/user-attachments/assets/52d2d270-2554-48bd-8327-0553592b6e5f)
+
 
 Diseño de Autos: Después de iniciar sesión, los usuarios pueden diseñar sus autos tocando el botón "Diseña tu auto", lo que los redirige a una página donde pueden:
 

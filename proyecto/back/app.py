@@ -99,27 +99,7 @@ def eliminar_cuenta(n_usuario):
         return jsonify ({"mensaje" : "Cuenta eliminada"})
     else:
         return jsonify ({"error" : "Usuario no registrado"}) 
-    
-@app.route('/garage/<n_usuario>/autos/<nombre_actual>', methods=['PUT'])
-def actualizar_nombre_auto(n_usuario, nombre_actual):
-    data = request.get_json()
-    nuevo_nombre = data.get("nuevo_nombre")
 
-    # Verificar que el nuevo nombre no esté en uso
-    auto_existente = Auto.query.filter_by(n_dueño=n_usuario, nombre=nuevo_nombre).first()
-    if auto_existente:
-        return jsonify({'error': 'Ya existe un auto con ese nombre'})
-
-    # Encontrar el auto que se va a actualizar
-    auto = Auto.query.filter_by(n_dueño=n_usuario, nombre=nombre_actual).first()
-    if not auto:
-        return jsonify({'error': 'Auto no encontrado'})
-
-    # Actualizar el nombre
-    auto.nombre = nuevo_nombre
-    db.session.commit()
-    
-    return jsonify({'mensaje': 'Nombre de auto actualizado exitosamente'})
 
 @app.route('/garage/<n_usuario>')
 def garage(n_usuario):
@@ -144,7 +124,22 @@ def autos_usuario(n_usuario):
     else:
         return jsonify({"error": "Usuario no registrado"})
         
-
+    
+@app.route('/garage/<n_usuario>/actualizar/<nombre_actual>', methods=['PUT'])
+def actualizar_nombre_auto(n_usuario, nombre_actual):
+    if not Usuario.query.get(n_usuario):
+        return jsonify({"error" : "Usuario no registrado"})
+    auto = Auto.query.filter_by(n_dueño=n_usuario, nombre=nombre_actual).first()
+    if not auto:
+        return jsonify({'error': 'Auto no encontrado'})
+    data = request.get_json()
+    nuevo_nombre = data.get("nuevo_nombre")
+    auto_existente = Auto.query.filter_by(n_dueño=n_usuario, nombre=nuevo_nombre).first()
+    if auto_existente:
+        return jsonify({'error': 'Ya existe un auto con ese nombre'})
+    auto.nombre = nuevo_nombre
+    db.session.commit()  
+    return jsonify({'mensaje': 'Nombre de auto actualizado exitosamente'})
 
 @app.route('/garage/<n_usuario>/<n_auto>', methods = ["DELETE"]) 
 def eliminar_auto(n_usuario, n_auto):

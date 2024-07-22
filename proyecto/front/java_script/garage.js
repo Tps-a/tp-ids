@@ -220,3 +220,51 @@ document.addEventListener('DOMContentLoaded', function() {
         this.classList.remove('animated');
     });
 });
+document.getElementById('btn-change-name').addEventListener('click', function() {
+    document.getElementById('change-name-form').style.display = 'block';
+    this.style.display = 'none'; // Oculta el botón de cambiar nombre
+});
+
+function actualizarNombreAuto() {
+    const nombreActual = auto.nombre; // Suponiendo que `auto` es la variable que contiene el auto actual
+    const nuevoNombre = document.getElementById('new-car-name').value;
+
+    fetch(window.location.href + "/autos/" + nombreActual, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nuevo_nombre: nuevoNombre })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            alert(data.mensaje);
+            // Oculta el formulario y muestra el botón de cambiar nombre nuevamente
+            document.getElementById('change-name-form').style.display = 'none';
+            document.getElementById('btn-change-name').style.display = 'block';
+            
+            // Actualiza la vista si es necesario
+            fetch(window.location.href + "/autos")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        autos_usuario = data;
+                        cantidad_autos = data.length;
+                        auto = autos_usuario[currentModelIndex]; // Actualiza el auto actual
+                        changeCarModel('left');
+                    }
+                });
+        }
+    });
+}
+
+function cancelarCambioNombre() {
+    // Oculta el formulario y muestra el botón de cambiar nombre nuevamente
+    document.getElementById('change-name-form').style.display = 'none';
+    document.getElementById('btn-change-name').style.display = 'block';
+}

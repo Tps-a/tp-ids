@@ -32,6 +32,14 @@
                 </div>
             </div>
         </section>
+        <section id="update-car-name">
+            <button id="btn-change-name">Cambiar Nombre</button>
+            <div id="change-name-form" style="display: none;">
+                <input type="text" id="new-car-name" placeholder="Nuevo nombre del auto">
+                <button onclick="actualizarNombreAuto()">Actualizar Nombre</button>
+                <button onclick="cancelarCambioNombre()">Cancelar</button>
+            </div>
+        </section>
         <button id="btn_eliminar" onclick="borrar_auto()">Eliminar auto</button>
     </main>    
     

@@ -178,7 +178,12 @@ function borrar_auto(){
     if(cantidad_autos != 0){
         fetch(window.location.href + "/" +auto.nombre,
             {method: "DELETE"})
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    console.log("Error de respuesta");
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.mensaje){
                     alert(data.mensaje);
@@ -247,7 +252,12 @@ function actualizarNombreAuto() {
                 },
                 body: JSON.stringify({ nuevo_nombre: nuevoNombre })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    console.log("Error de respuesta");
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.error) {
                     alert(data.error);

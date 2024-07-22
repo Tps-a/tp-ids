@@ -20,8 +20,12 @@ function register(event) {
         return response.json();
     })
     .then(data => { 
-        alert(data.mensaje);
-        window.location.href = '/login_page'
+        if (data.error){
+            alert(data.error);
+        } else{
+            alert(data.mensaje);
+            window.location.href = '/login_page'
+        }
     })
 }
 
@@ -50,7 +54,7 @@ function login(event) {
         if(data.usuario){
             window.location.href = `/${data.usuario}`; 
         } else{
-            alert("Error: usuario o contraseña incorrectos!")
+            alert(data.error)
         }
         
     })

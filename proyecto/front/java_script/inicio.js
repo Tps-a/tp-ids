@@ -15,14 +15,11 @@ function register(event) {
     )
     .then(response => {
         if (!response.ok) {
-            return response.json().then(data => {
-                alert(data.error);
-                throw new Error(data.error);
-            });
+            console.log("Error de respuesta");
         }
-        return response.json()
+        return response.json();
     })
-    .then(data => {
+    .then(data => { 
         alert(data.mensaje);
         window.location.href = '/login_page'
     })
@@ -45,12 +42,9 @@ function login(event) {
     )
     .then(response => {
         if (!response.ok) {
-            return response.json().then(data => {
-                alert(data.error);
-                throw new Error(data.error);
-            });
+            console.log("Error de respuesta");
         }
-        return response.json()
+        return response.json();
     })
     .then(data => {
         if(data.usuario){
@@ -82,7 +76,12 @@ function cambiar_contraseña(event) {
             })
         }
     )
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            console.log("Error de respuesta");
+        }
+        return response.json();
+    })
     .then(data => {
         if (data.error){
             alert(data.error); 

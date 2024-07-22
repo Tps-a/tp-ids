@@ -154,7 +154,12 @@ function guardar_auto(event) {
                 color: color_actual,
                 } )
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    console.log("Error de respuesta");
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.error){
                     alert(data.error);

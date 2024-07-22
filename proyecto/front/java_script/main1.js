@@ -26,17 +26,13 @@ function eliminar_cuenta(event) {
         let usuario = document.getElementById("btn_eliminar").getAttribute("data-usuario");
 
         fetch(`/${usuario}/eliminar_cuenta`, {
-            method: "DELETE",
-            headers: {'Content-Type': 'application/json'}
+            method: "DELETE"
         })
         .then(response => {
-            return response.json().then(data => {
-                if (!response.ok) {
-                    alert(data.error);
-                    throw new Error(data.error);
-                }
-                return data;
-            });
+            if (!response.ok) {
+                console.log("Error de respuesta");
+            }
+            return response.json();
         })
         .then(data => {
             alert(data.mensaje);

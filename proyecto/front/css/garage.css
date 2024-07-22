@@ -266,19 +266,22 @@ section, canvas {
   padding: 20px; 
   border-radius: 8px; 
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); 
-  width: 300px; 
+  max-width: 90%; 
+  width: auto;
+  box-sizing: border-box; 
   z-index: 1000; 
 }
 
 #change-name-form input,
 #change-name-form button {
   margin-bottom: 10px; 
-  width: calc(100% - 20px);
+  width: 100%;
   padding: 10px; 
   border: 1px solid #555; 
   border-radius: 4px; 
   background: #222; 
   color: #fff; 
+  box-sizing: border-box; 
 }
 
 #change-name-form input::placeholder {

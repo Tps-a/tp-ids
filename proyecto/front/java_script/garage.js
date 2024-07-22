@@ -223,11 +223,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById('btn-change-name').addEventListener('click', function() {
     var form = document.getElementById('change-name-form');
-    // Verifica si el formulario está visible o no
+   
     if (form.style.display === 'none' || form.style.display === '') {
-        form.style.display = 'block'; // Muestra el formulario
+        form.style.display = 'block'; 
     } else {
-        form.style.display = 'none'; // Oculta el formulario
+        form.style.display = 'none'; 
     }
 });
 
@@ -259,11 +259,9 @@ function actualizarNombreAuto() {
             }
         });
     }
-
 }
 
 function cancelarCambioNombre() {
-    // Limpia el campo de entrada y oculta el formulario
     document.getElementById('new-car-name').value = '';
     document.getElementById('change-name-form').style.display = 'none';
     document.getElementById('btn-change-name').style.display = 'block';

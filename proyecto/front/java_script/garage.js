@@ -220,14 +220,26 @@ document.addEventListener('DOMContentLoaded', function() {
         this.classList.remove('animated');
     });
 });
+
 document.getElementById('btn-change-name').addEventListener('click', function() {
-    document.getElementById('change-name-form').style.display = 'block';
-    this.style.display = 'none'; // Oculta el botón de cambiar nombre
+    var form = document.getElementById('change-name-form');
+    // Verifica si el formulario está visible o no
+    if (form.style.display === 'none' || form.style.display === '') {
+        form.style.display = 'block'; // Muestra el formulario
+    } else {
+        form.style.display = 'none'; // Oculta el formulario
+    }
 });
+
 
 function actualizarNombreAuto() {
     const nombreActual = auto.nombre; // Suponiendo que `auto` es la variable que contiene el auto actual
     const nuevoNombre = document.getElementById('new-car-name').value;
+
+    if (!nuevoNombre) {
+        alert('Por favor, ingrese un nuevo nombre.');
+        return;
+    }
 
     fetch(window.location.href + "/autos/" + nombreActual, {
         method: 'PUT',
@@ -264,7 +276,8 @@ function actualizarNombreAuto() {
 }
 
 function cancelarCambioNombre() {
-    // Oculta el formulario y muestra el botón de cambiar nombre nuevamente
+    // Limpia el campo de entrada y oculta el formulario
+    document.getElementById('new-car-name').value = '';
     document.getElementById('change-name-form').style.display = 'none';
     document.getElementById('btn-change-name').style.display = 'block';
 }
